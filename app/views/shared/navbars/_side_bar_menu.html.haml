@@ -1,0 +1,40 @@
+%nav#sidebarMenu.col-md-3.col-lg-2.d-md-block.bg-light.sidebar.collapse
+  .position-sticky.pt-3
+    %ul.nav.flex-column
+      %li.nav-item
+        %a.nav-link{class: "#{params[:controller] == 'welcome' ? 'active' : ''}", "aria-current" => "page", href: root_path}
+          %i.fas.fa-home
+          Dashboard
+      %li.nav-item
+        %a.nav-link{class: "#{params[:controller] == 'accounts' ? 'active' : ''}", href: accounts_path}
+          %i.fas.fa-building
+          Accounts
+      %li.nav-item
+        %a.nav-link{class: "#{params[:controller] == 'licenses' ? 'active' : ''}", href: licenses_path}
+          %i.fas.fa-handshake
+          Licenses
+      %li.nav-item
+        %a.nav-link{:href => "#"}
+          %i.fas.fa-users
+          Contacts
+      %li.nav-item
+        %a.nav-link{class: "#{params[:controller] == 'account_activities' ? 'active' : ''}", href: account_activities_path}
+          %i.fas.fa-exchange-alt
+          Activity
+      %li.nav-item
+        %a.nav-link{class: "#{params[:controller] == 'software_versions' ? 'active' : ''}", href: software_versions_path}
+          %i.fas.fa-desktop
+          Software
+    %h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted
+      %span Saved reports
+      %a.link-secondary{"aria-label" => "Add a new report", :href => "#"}
+        %span{"data-feather" => "plus-circle"}
+    %ul.nav.flex-column.mb-2
+      %li.nav-item
+        %a.nav-link{:href => "#"}
+          %span{"data-feather" => "file-text"}
+          Current month
+      %li.nav-item
+        %a.nav-link{:href => "#"}
+          %span{"data-feather" => "file-text"}
+          Last quarter

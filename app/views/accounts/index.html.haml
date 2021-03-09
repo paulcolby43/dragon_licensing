@@ -1,0 +1,88 @@
+-@title= "Accounts"
+= render partial: 'shared/navbars/header_navbar'
+.container-fluid
+  .row
+    = render partial: 'shared/navbars/side_bar_menu'
+    %main.col-md-9.ms-sm-auto.col-lg-10.px-md-4
+      .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        %h1.h2 Accounts
+        .btn-toolbar.mb-2.mb-md-0
+          .btn-group.me-2
+            %button.btn.btn-sm.btn-outline-secondary{:type => "button"} Share
+            %button.btn.btn-sm.btn-outline-secondary{:type => "button"} Export
+          %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{:type => "button"}
+            %span{"data-feather" => "calendar"}
+            This week
+      -#
+        %button.btn.btn-secondary{"data-bs-placement" => "top", "data-bs-toggle" => "tooltip", :title => "Tooltip on top", :type => "button"}
+          Tooltip
+        / Button trigger modal
+        %button.btn.btn-primary{"data-bs-target" => "#exampleModal", "data-bs-toggle" => "modal", :type => "button"}
+          Modal
+        %button.btn.btn-secondary{"data-bs-container" => "body", "data-bs-content" => "Right popover", "data-bs-placement" => "right", "data-bs-toggle" => "popover", :type => "button"}
+          Popover
+        / Modal
+        #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
+          .modal-dialog
+            .modal-content
+              .modal-header
+                %h5#exampleModalLabel.modal-title Modal title
+                %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+              .modal-body
+                \...
+              .modal-footer
+                %button.btn.btn-secondary{"data-bs-dismiss" => "modal", :type => "button"} Close
+                %button.btn.btn-primary{:type => "button"} Save changes
+
+      .table-responsive
+        %table.table.table-striped.table-sm
+          %thead
+            %tr
+              %th Active
+              %th Id
+              %th Account #
+              %th Yard Name
+              %th Phone
+              %th Dragon Classic
+              %th Dragon X
+              %th Address
+              %th Address 2
+              %th City
+              %th State
+              %th Zip
+              %th Suspended
+              %th Notes
+              %th
+          %tbody
+            - @accounts.each do |account|
+              %tr
+                %td= account.active? ? 'Yes' : 'No'
+                %td= account.id.truncate(10)
+                %td.highlightable= account.account_number
+                %td.highlightable= account.yard_name
+                %td= account.phone_number
+                %td= account.scrap_dragon_classic? ? 'Yes' : 'No'
+                %td= account.scrap_dragon_x? ? 'Yes' : 'No'
+                %td= account.address
+                %td= account.address_2
+                %td= account.city
+                %td= account.state
+                %td= account.zip
+                %td= account.suspended? ? 'Yes' : 'No'
+                %td.highlightable= account.notes
+                %td
+                  = link_to 'Show', account, class: 'btn btn-sm btn-secondary'
+                  = link_to 'Edit', edit_account_path(account), class: 'btn btn-sm btn-primary'
+                  =# link_to 'Delete', account, :method => :delete, class: 'btn btn-sm btn-danger', :data => { :confirm => 'Are you sure you want to delete this account? It cannot be undone.' }
+                  = link_to 'Delete', '#', class: 'btn btn-sm btn-danger'
+
+:javascript
+  $(document).ready(function() {
+    var txt = $("#q").val()
+    if (txt.length > 0) {
+      $(".highlightable").each(function (i, v) {
+        //The extra parentheses in new Regexp() will store the value found. The $1 in .replace() inserts the stored value so character cases will be consistent.
+        v.innerHTML = v.innerText.replace(new RegExp('('+txt+')', 'ig'), "<mark>$1</mark>");
+      });
+    }
+  });

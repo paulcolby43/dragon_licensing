@@ -1,0 +1,17 @@
+default: &default
+  adapter: sqlserver
+  host: <%= ENV["LICENSING_HOST"] %>
+  username: <%= ENV["LICENSING_USERNAME"] %>
+  password: <%= ENV["LICENSING_PASSWORD"] %>
+  
+development:
+  <<: *default
+  database: <%= ENV["LICENSING_DATABASE"] %>
+  
+test:
+  <<: *default
+  database: <%= ENV["LICENSING_TEST_DATABASE"] %>
+  
+production:
+  <<: *default
+  database: <%= ENV["LICENSING_DATABASE"] %>

@@ -1,0 +1,43 @@
+-@title= "Software Versions"
+= render partial: 'shared/navbars/header_navbar'
+.container-fluid
+  .row
+    = render partial: 'shared/navbars/side_bar_menu'
+    %main.col-md-9.ms-sm-auto.col-lg-10.px-md-4
+      .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        %h1.h2 Software Versions
+        .btn-toolbar.mb-2.mb-md-0
+          .btn-group.me-2
+            %button.btn.btn-sm.btn-outline-secondary{:type => "button"} Share
+            %button.btn.btn-sm.btn-outline-secondary{:type => "button"} Export
+          %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{:type => "button"}
+            %span{"data-feather" => "calendar"}
+            This week
+
+      .table-responsive
+        %table.table.table-striped.table-sm.table-hover
+          %thead
+            %tr
+              %th Name
+              %th Current Version
+              %th Release Date
+              %th Software Type
+              %th Is SDX
+              %th Is Default License
+              %th
+              
+          %tbody
+            - @software_versions.each do |software_version|
+              %tr
+                %td= software_version.name
+                %td= software_version.current_version
+                %td= software_version.release_date.strftime("%m/%d/%Y")
+                %td= software_version.software_type
+                %td= software_version.is_sdx? ? 'Yes' : 'No'
+                %td= software_version.is_default_license? ? 'Yes' : 'No'
+                %td
+                  = link_to 'Show', software_version, class: 'btn btn-sm btn-secondary'
+                  = link_to 'Edit', edit_software_version_path(software_version), class: 'btn btn-sm btn-primary'
+                  =# link_to 'Delete', software_version, :method => :delete, class: 'btn btn-sm btn-danger', :data => { :confirm => 'Are you sure you want to delete this software version? It cannot be undone.' }
+                  = link_to 'Delete', '#', class: 'btn btn-sm btn-danger'
+                

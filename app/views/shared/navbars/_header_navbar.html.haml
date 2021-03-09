@@ -1,0 +1,11 @@
+%header.navbar.navbar-dark.sticky-top.bg-dark.flex-md-nowrap.p-0.shadow
+  %a.navbar-brand.col-md-3.col-lg-2.me-0.px-3{:href => "#"}= image_tag('dragon_spiral_navbar_logo.png')
+  %button.navbar-toggler.position-absolute.d-md-none.collapsed{"aria-controls" => "sidebarMenu", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#sidebarMenu", "data-bs-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  - if current_page? accounts_path
+    -# %input.form-control.form-control-dark.w-100{"aria-label" => "Search", :placeholder => "Search", :type => "text"}/
+    = form_tag '#', :method => "get", class: 'w-100' do
+      = text_field_tag :q, params[:q], placeholder: 'Search', class: "form-control form-control-dark w-100"
+  %ul.navbar-nav.px-3
+    %li.nav-item.text-nowrap
+      %a.nav-link{:href => "#"} Sign out
