@@ -1,0 +1,10 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    domainname: "licensing"
+    ports:
+      - "3000:3000"
+    image: tranact/licensing_web_app:development

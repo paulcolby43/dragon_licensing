@@ -68,6 +68,7 @@
                       %td= account_activity.LastWorkOrderNumber.strip
                       %td= account_activity.NumberOfComputers
                       %td= account_activity.SoftwareVersion.strip
+            = paginate @account_activities
           - else
             %br
             %h2.lead.text-center None

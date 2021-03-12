@@ -16,7 +16,8 @@ class AccountsController < ApplicationController
   # GET /accounts/1.json
   def show
     @licenses = @account.licenses
-    @account_activities = @account.account_activities
+#    @account_activities = @account.account_activities
+    @account_activities = @account.account_activities.order("DateCreated DESC").page params[:page]
     respond_to do |format|
       format.html {}
       format.json { 

@@ -4,7 +4,8 @@ class AccountActivitiesController < ApplicationController
   # GET /account_activities
   # GET /account_activities.json
   def index
-    @account_activities = AccountActivity.order("DateCreated DESC").limit(200)
+#    @account_activities = AccountActivity.order("DateCreated DESC").limit(200)
+    @account_activities = AccountActivity.order("DateCreated DESC").page params[:page]
   end
 
   # GET /account_activities/1
