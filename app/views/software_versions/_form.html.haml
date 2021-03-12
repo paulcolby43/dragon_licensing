@@ -1,0 +1,29 @@
+= form_for @software_version do |f|
+  .row.mb-4
+    .col-sm-4
+      %label.form-label{:for => "SoftwareName"} Software Name
+      = f.text_field :SoftwareName, class: "form-control", placeholder: 'Software Name', required: true
+  .row.mb-4
+    .col-sm-4
+      %label.form-label{:for => "CurrentVersion"} Current Version
+      = f.text_field :CurrentVersion, class: "form-control", placeholder: 'Current Version', required: true
+    .col-sm-3
+      %label.form-label{:for => "ReleaseDate"} Release Date
+      = f.text_field :ReleaseDate, class: "form-control flatpickr", placeholder: 'Release Date', required: true
+    .col-sm-4
+      %label.form-label{:for => "SoftwareType"} Software Type
+      = f.number_field :SoftwareType, class: "form-control", placeholder: 'Software Type', required: true
+  .row.mb-4
+    .col-sm-2
+      %label.form-label{:for => "IsSDX"} SDX
+      = f.check_box :IsSDX
+    .col-sm-2
+      %label.form-label{:for => "IsDefaultLicense"} Default License
+      = f.check_box :IsDefaultLicense
+  .row.mb-4
+    %hr
+    .col-6
+      = link_to 'Cancel', :back, class: "btn btn-outline-secondary"
+      %button.btn.btn-primary{:type => "submit", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Save"}} 
+        Save
+  .row.mb-4

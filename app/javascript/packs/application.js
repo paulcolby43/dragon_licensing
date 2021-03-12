@@ -26,8 +26,27 @@ import * as bootstrap from 'bootstrap'
 import "../stylesheets/application"
 import "@fortawesome/fontawesome-free/css/all"
 
+// Flatpickr datepicker stuff
+import flatpickr from "flatpickr"
+import "flatpickr/dist/flatpickr.min.css"
+
+document.addEventListener("turbolinks:load", function() {
+  //  flatpickr(".datepicker", {})
+  flatpickr(".flatpickr", {
+    //minDate: "today",
+    altInput: true,
+  });
+})
+
+document.addEventListener("turbolinks:before-cache", function() {
+  $(".flatpickr").each(function(){ 
+    this._flatpickr.destroy()
+   })
+})
+
 
 document.addEventListener("DOMContentLoaded", function(event) {
+  
   var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
   var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
     return new bootstrap.Popover(popoverTriggerEl)
@@ -37,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
   })
+  
 });
 
 var jQuery = require('jquery')

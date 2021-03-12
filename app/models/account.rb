@@ -5,6 +5,8 @@ class Account < ApplicationRecord
   has_many :account_activities, :foreign_key => 'AccountHeadId'
   has_many :licenses, :foreign_key => 'AccountHeadId'
   
+  before_create :generate_unique_guid
+  before_create :set_address2_to_empty_string_if_nil, if: Proc.new { |account| account.Address2.nil? }
   
   #############################
   #     Instance Methods      #
@@ -72,6 +74,17 @@ class Account < ApplicationRecord
   
   def active?
     self.IsActive
+  end
+  
+  def generate_unique_guid
+    begin
+      guid = SecureRandom.uuid
+      self.Id = guid
+    end while self.class.exists?(Id: guid)
+  end
+  
+  def set_address2_to_empty_string_if_nil
+    self.Address2 = ""
   end
   
   #############################

@@ -1,0 +1,52 @@
+= form_for @account do |f|
+  .row.mb-4
+    .col-sm-4
+      %label.form-label{:for => "YardName"} Yard Name
+      = f.text_field :YardName, class: "form-control", placeholder: 'Yard Name', required: true
+    .col-sm-4
+      %label.form-label{:for => "AccountNumber"} Account Number
+      = f.text_field :AccountNumber, class: "form-control", placeholder: 'Account Number', required: true
+    .col-sm-4
+      %label.form-label{:for => "PhoneNumber"} Phone Number
+      = f.text_field :PhoneNumber, class: "form-control", placeholder: 'Phone Number', required: true
+  .row.mb-4
+    .col-sm-4
+      %label.form-label{:for => "Address"} Address
+      = f.text_field :Address, class: "form-control", placeholder: 'Address', required: true
+    .col-sm-4
+      %label.form-label{:for => "Address2"} Address 2
+      = f.text_field :Address2, class: "form-control", placeholder: 'Address 2'
+  .row.mb-4
+    .col-sm-4
+      %label.form-label{:for => "City"} City
+      = f.text_field :City, class: "form-control", placeholder: 'City', required: true
+    .col-sm-3
+      %label.form-label{:for => "State"} State
+      = f.text_field :State, class: "form-control", placeholder: 'State', required: true
+    .col-sm-3
+      %label.form-label{:for => "Zip"} Zip
+      = f.text_field :Zip, class: "form-control", placeholder: 'Zip', required: true
+  .row.mb-4
+    .col-sm-2
+      %label.form-label{:for => "IsActive"} Active
+      = f.check_box :IsActive
+    .col-sm-2
+      %label.form-label{:for => "IsSuspended"} Suspended
+      = f.check_box :IsSuspended
+    .col-sm-2
+      %label.form-label{:for => "ScrapDragonClassic"} Scrap Dragon Classic
+      = f.check_box :ScrapDragonClassic
+    .col-sm-2
+      %label.form-label{:for => "ScrapDragonX"} Scrap Dragon X
+      = f.check_box :ScrapDragonX
+  .row.mb-4
+    .col-sm-6
+      %label.form-label{:for => "Notes"} Notes
+      = f.text_area :Notes, class: "form-control", placeholder: 'Notes', required: true
+  .row.mb-4
+    %hr
+    .col-6
+      = link_to 'Cancel', :back, class: "btn btn-outline-secondary"
+      %button.btn.btn-primary{:type => "submit", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Save"}} 
+        Save
+  .row.mb-4

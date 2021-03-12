@@ -5,6 +5,8 @@ class License < ApplicationRecord
   belongs_to :account, :foreign_key => "AccountHeadId"
   belongs_to :software_version, :foreign_key => "SoftwareVersionId"
   
+  before_create :generate_unique_guid
+  
   
   #############################
   #     Instance Methods      #
@@ -28,6 +30,13 @@ class License < ApplicationRecord
   
   def is_single_user?
     self.IsSingleUser
+  end
+  
+  def generate_unique_guid
+    begin
+      guid = SecureRandom.uuid
+      self.Id = guid
+    end while self.class.exists?(Id: guid)
   end
   
   #############################

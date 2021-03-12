@@ -57,7 +57,10 @@ class SoftwareVersionsController < ApplicationController
   def destroy
     @software_version.destroy
     respond_to do |format|
-      format.html { redirect_to software_versions_url, notice: 'SoftwareVersion was successfully destroyed.' }
+      format.html { 
+#        redirect_to software_versions_url, notice: 'SoftwareVersion was successfully destroyed.' 
+        redirect_back fallback_location: software_versions_url, notice: 'SoftwareVersion was successfully destroyed.'
+        }
       format.json { head :no_content }
     end
   end
@@ -70,6 +73,6 @@ class SoftwareVersionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def software_version_params
-      params.require(:software_version).permit(:name, :title, :content)
+      params.require(:software_version).permit(:SoftwareName, :CurrentVersion, :ReleaseDate, :SoftwareType, :IsSDX, :IsDefaultLicense)
     end
 end

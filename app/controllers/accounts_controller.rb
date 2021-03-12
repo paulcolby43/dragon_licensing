@@ -17,6 +17,14 @@ class AccountsController < ApplicationController
   def show
     @licenses = @account.licenses
     @account_activities = @account.account_activities
+    respond_to do |format|
+      format.html {}
+      format.json { 
+        render json: JSON.pretty_generate(JSON.parse(@account.to_json(include: :licenses)))
+#        rescue ActiveRecord::RecordNotFound
+#          head :not_found
+        }
+    end
   end
 
   # GET /accounts/new
@@ -36,7 +44,11 @@ class AccountsController < ApplicationController
     respond_to do |format|
       if @account.save
         format.html { redirect_to @account, notice: 'Account was successfully created.' }
-        format.json { render :show, status: :created, location: @account }
+#        format.json { render :show, status: :created, location: @account }
+#        format.json {render json: @account, status: 201}
+        format.json {
+          render json: JSON.pretty_generate(JSON.parse(@account.to_json)), status: 201
+        }
       else
         format.html { render :new }
         format.json { render json: @account.errors, status: :unprocessable_entity }
@@ -63,7 +75,10 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
+      format.html { 
+#        redirect_to accounts_url, notice: 'Account was successfully destroyed.' 
+        redirect_back fallback_location: accounts_url, notice: 'Account was successfully destroyed.'
+        }
       format.json { head :no_content }
     end
   end
@@ -76,6 +91,6 @@ class AccountsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def account_params
-      params.require(:account).permit(:name, :title, :content)
+      params.require(:account).permit(:AccountNumber, :ScrapDragonClassic, :ScrapDragonX, :Address, :City, :State, :Address2, :Zip, :PhoneNumber, :YardName, :IsActive, :Notes, :IsSuspended)
     end
 end

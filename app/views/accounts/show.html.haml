@@ -6,6 +6,7 @@
     %main.col-md-9.ms-sm-auto.col-lg-10.px-md-4
       .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
         %h1.h2= @account.yard_name
+        .float-end= link_to 'Edit', edit_account_path(@account), class: 'btn btn-primary'
       %ul.list-group.list-group-horizontal
         %li.list-group-item
           %p
@@ -37,59 +38,70 @@
       %br
       %ul#myTab.nav.nav-tabs{:role => "tablist"}
         %li.nav-item{:role => "presentation"}
-          %button#activity-tab.nav-link.active{"aria-controls" => "activity", "aria-selected" => "true", "data-bs-target" => "#activity", "data-bs-toggle" => "tab", :role => "tab", :type => "button"} Activity
+          %button#activity-tab.nav-link{class: "#{@licenses.blank? ? '' : 'active'}", "aria-controls" => "activity", "aria-selected" => "true", "data-bs-target" => "#activity", "data-bs-toggle" => "tab", :role => "tab", :type => "button"} Activity
         %li.nav-item{:role => "presentation"}
-          %button#licenses-tab.nav-link{"aria-controls" => "licenses", "aria-selected" => "false", "data-bs-target" => "#licenses", "data-bs-toggle" => "tab", :role => "tab", :type => "button"} Licenses
+          %button#licenses-tab.nav-link{class: "#{@licenses.blank? ? 'active' : ''}", "aria-controls" => "licenses", "aria-selected" => "false", "data-bs-target" => "#licenses", "data-bs-toggle" => "tab", :role => "tab", :type => "button"} Licenses
       #myTabContent.tab-content
-        #activity.tab-pane.fade.show.active{"aria-labelledby" => "activity-tab", :role => "tabpanel"}
-          .table-responsive
-            %table.table.table-striped.table-sm
-              %thead
-                %tr
-                  %th Date Created
-                  %th Last Buy Transaction #
-                  %th Last Contract #
-                  %th Last Shipment #
-                  %th Last Pack #
-                  %th Last Work Order #
-                  %th Computers
-                  %th Version
-              %tbody
-                - @account_activities.each do |account_activity|
+        #activity.tab-pane.fade{class: "#{@licenses.blank? ? '' : 'active show'}", "aria-labelledby" => "activity-tab", :role => "tabpanel"}
+          %br
+          - unless @account_activities.blank?
+            .table-responsive
+              %table.table.table-striped.table-sm
+                %thead
                   %tr
-                    %td= account_activity.DateCreated.strftime("%-m/%-d/%y %H:%M:%S")
-                    %td= account_activity.LastBuyTransactionNumber.strip
-                    %td= account_activity.LastContractNumber.strip
-                    %td= account_activity.LastShipmentNumber.strip
-                    %td= account_activity.LastPackNumber.strip
-                    %td= account_activity.LastWorkOrderNumber.strip
-                    %td= account_activity.NumberOfComputers
-                    %td= account_activity.SoftwareVersion.strip
+                    %th Date Created
+                    %th Last Buy Transaction #
+                    %th Last Contract #
+                    %th Last Shipment #
+                    %th Last Pack #
+                    %th Last Work Order #
+                    %th Computers
+                    %th Version
+                %tbody
+                  - @account_activities.each do |account_activity|
+                    %tr
+                      %td= account_activity.DateCreated.strftime("%-m/%-d/%y %H:%M:%S")
+                      %td= account_activity.LastBuyTransactionNumber.strip
+                      %td= account_activity.LastContractNumber.strip
+                      %td= account_activity.LastShipmentNumber.strip
+                      %td= account_activity.LastPackNumber.strip
+                      %td= account_activity.LastWorkOrderNumber.strip
+                      %td= account_activity.NumberOfComputers
+                      %td= account_activity.SoftwareVersion.strip
+          - else
+            %br
+            %h2.lead.text-center None
 
-        #licenses.tab-pane.fade{"aria-labelledby" => "licenses-tab", :role => "tabpanel"}
-          .table-responsive
-            %table.table.table-striped.table-sm
-              %thead
-                %tr
-                  %th Expire Date
-                  %th Days Between Update
-                  %th Auto Update
-                  %th Is Demo License
-                  %th Is Single User
-                  %th
-              %tbody
-                - @licenses.each do |license|
+        #licenses.tab-pane.fade{class: "#{@licenses.blank? ? 'active show' : ''}", "aria-labelledby" => "licenses-tab", :role => "tabpanel"}
+          %br
+          - unless @licenses.blank?
+            .table-responsive
+              %table.table.table-striped.table-sm
+                %thead
                   %tr
-                    %td= license.expire_date.strftime("%m/%d/%Y")
-                    %td= license.days_between_update
-                    %td= license.auto_update? ? 'Yes' : 'No'
-                    %td= license.is_demo_license? ? 'Yes' : 'No'
-                    %td= license.is_single_user? ? 'Yes' : 'No'
-                    %td
-                      = link_to 'Show', license, class: 'btn btn-sm btn-secondary'
-                      = link_to 'Edit', edit_license_path(license), class: 'btn btn-sm btn-primary'
-                      =# link_to 'Delete', license, :method => :delete, class: 'btn btn-sm btn-danger', :data => { :confirm => 'Are you sure you want to delete this license? It cannot be undone.' }
-                      = link_to 'Delete', '#', class: 'btn btn-sm btn-danger'
+                    %th Software Name
+                    %th Expire Date
+                    %th Days Between Update
+                    %th Auto Update
+                    %th Is Demo License
+                    %th Is Single User
+                    %th
+                %tbody
+                  - @licenses.each do |license|
+                    %tr
+                      %td= link_to license.software_version.name, license.software_version
+                      %td= license.expire_date.strftime("%m/%d/%Y")
+                      %td= license.days_between_update
+                      %td= license.auto_update? ? 'Yes' : 'No'
+                      %td= license.is_demo_license? ? 'Yes' : 'No'
+                      %td= license.is_single_user? ? 'Yes' : 'No'
+                      %td
+                        = link_to 'Show', license, class: 'btn btn-sm btn-outline-secondary'
+                        = link_to 'Edit', edit_license_path(license), class: 'btn btn-sm btn-primary'
+                        = link_to 'Delete', license, :method => :delete, class: 'btn btn-sm btn-danger', :data => { :confirm => 'Are you sure you want to delete this license? It cannot be undone.' }
+          - else
+            %h2.lead None
+          = link_to 'Create New License', new_license_path(account_id: @account.id), class: 'btn btn-primary'
 
       
                 

@@ -1,0 +1,44 @@
+= form_for @license do |f|
+  - @license.errors.each do |attr, msg|
+    .alert.alert-danger.alert-dismissible
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      = "#{attr} #{msg}" if @license.errors[attr].first == msg
+  = f.hidden_field :AccountHeadId
+  
+  .row.mb-4
+    - unless @license.account.blank?
+      .row.mb-4
+        %p.lead
+          %strong Account:
+          = @license.account.yard_name
+    - else
+      .col-sm-4
+        %label.form-label{:for => "AccountHeadId"} Account
+        = f.select :AccountHeadId, options_from_collection_for_select(Account.all, "Id", "YardName", @license.AccountHeadId), {prompt: 'Choose Account'}, {class: "form-control", required: true}
+    .col-sm-4
+      %label.form-label{:for => "SoftwareVersionId"} Software Version
+      = f.select :SoftwareVersionId, options_from_collection_for_select(SoftwareVersion.all, "Id", "SoftwareName", @license.SoftwareVersionId), {prompt: 'Choose Software'}, {class: "form-control", required: true}
+  .row.mb-4
+    .col-sm-3
+      %label.form-label{:for => "ExpireDate"} Expire Date
+      = f.text_field :ExpireDate, class: "form-control flatpickr", placeholder: 'Expire Date', required: true
+    .col-sm-2
+      %label.form-label{:for => "DaysBetweenUpdate"} Days Between Update
+      = f.number_field :DaysBetweenUpdate, class: "form-control", placeholder: 'Days Between Update', required: true, :min => "0", :pattern => "[0-9]*"
+  .row.mb-4
+    .col-sm-2
+      %label.form-label{:for => "AutoUpdate"} Auto Update
+      = f.check_box :AutoUpdate
+    .col-sm-2
+      %label.form-label{:for => "IsDemoLicense"} Demo License
+      = f.check_box :IsDemoLicense
+    .col-sm-2
+      %label.form-label{:for => "IsSingleUser"} Single User
+      = f.check_box :IsSingleUser
+  .row.mb-4
+    %hr
+    .col-6
+      = link_to 'Cancel', :back, class: "btn btn-outline-secondary"
+      %button.btn.btn-primary{:type => "submit", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Save"}} 
+        Save
+  .row.mb-4

@@ -10,9 +10,11 @@
           .btn-group.me-2
             %button.btn.btn-sm.btn-outline-secondary{:type => "button"} Share
             %button.btn.btn-sm.btn-outline-secondary{:type => "button"} Export
-          %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{:type => "button"}
-            %span{"data-feather" => "calendar"}
-            This week
+          -#
+            %button.btn.btn-sm.btn-outline-secondary.dropdown-toggle{:type => "button"}
+              %span{"data-feather" => "calendar"}
+              This week
+          = link_to 'New', new_account_path, class: 'btn btn-primary btn-sm'
       -#
         %button.btn.btn-secondary{"data-bs-placement" => "top", "data-bs-toggle" => "tooltip", :title => "Tooltip on top", :type => "button"}
           Tooltip
@@ -39,7 +41,6 @@
           %thead
             %tr
               %th Active
-              %th Id
               %th Account #
               %th Yard Name
               %th Phone
@@ -57,7 +58,6 @@
             - @accounts.each do |account|
               %tr
                 %td= account.active? ? 'Yes' : 'No'
-                %td= account.id.truncate(10)
                 %td.highlightable= account.account_number
                 %td.highlightable= account.yard_name
                 %td= account.phone_number
@@ -71,10 +71,10 @@
                 %td= account.suspended? ? 'Yes' : 'No'
                 %td.highlightable= account.notes
                 %td
-                  = link_to 'Show', account, class: 'btn btn-sm btn-secondary'
+                  = link_to 'Show', account, class: 'btn btn-sm btn-outline-secondary'
                   = link_to 'Edit', edit_account_path(account), class: 'btn btn-sm btn-primary'
                   =# link_to 'Delete', account, :method => :delete, class: 'btn btn-sm btn-danger', :data => { :confirm => 'Are you sure you want to delete this account? It cannot be undone.' }
-                  = link_to 'Delete', '#', class: 'btn btn-sm btn-danger'
+                  =# link_to 'Delete', '#', class: 'btn btn-sm btn-danger'
 
 :javascript
   $(document).ready(function() {

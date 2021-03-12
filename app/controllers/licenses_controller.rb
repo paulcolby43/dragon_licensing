@@ -16,7 +16,8 @@ class LicensesController < ApplicationController
 
   # GET /licenses/new
   def new
-    @license = License.new
+#    @account = Account.find(params[:account_id]) unless params[:account_id].blank?
+    @license = License.new(AccountHeadId: params[:account_id])
   end
 
   # GET /licenses/1/edit
@@ -58,7 +59,10 @@ class LicensesController < ApplicationController
   def destroy
     @license.destroy
     respond_to do |format|
-      format.html { redirect_to licenses_url, notice: 'License was successfully destroyed.' }
+      format.html { 
+#        redirect_to licenses_url, notice: 'License was successfully destroyed.' 
+        redirect_back fallback_location: licenses_url, notice: 'License was successfully destroyed.'
+        }
       format.json { head :no_content }
     end
   end
@@ -71,6 +75,6 @@ class LicensesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def license_params
-      params.require(:license).permit(:name, :title, :content)
+      params.require(:license).permit(:AccountHeadId, :SoftwareVersionId, :ExpireDate, :DaysBetweenUpdate, :AutoUpdate, :IsDemoLicense, :IsSingleUser)
     end
 end
