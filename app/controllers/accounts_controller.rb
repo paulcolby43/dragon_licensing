@@ -8,7 +8,7 @@ class AccountsController < ApplicationController
       @accounts = Account.all
     else
       @query_string = "%#{params[:q]}%"
-      @accounts = Account.where("AccountNumber like ? OR YardName like ? OR Notes like ?", @query_string, @query_string, @query_string)
+      @accounts = Account.where("AccountNumber like ? OR YardName like ? OR Notes like ? OR Address like ? OR City like ? OR State like ? OR Zip like ?", @query_string, @query_string, @query_string, @query_string, @query_string, @query_string, @query_string)
     end
   end
 

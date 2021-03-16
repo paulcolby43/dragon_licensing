@@ -1,10 +1,12 @@
 class LicensesController < ApplicationController
   before_action :set_license, only: [:show, :edit, :update, :destroy]
+  
+  helper_method :licenses_sort_column, :licenses_sort_direction
 
   # GET /licenses
   # GET /licenses.json
   def index
-    @licenses = License.all
+    @licenses = License.all.order("#{licenses_sort_column} #{licenses_sort_direction}")
   end
 
   # GET /licenses/1
@@ -76,5 +78,15 @@ class LicensesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def license_params
       params.require(:license).permit(:AccountHeadId, :SoftwareVersionId, :ExpireDate, :DaysBetweenUpdate, :AutoUpdate, :IsDemoLicense, :IsSingleUser)
+    end
+    
+    ### Secure the licenses sort direction ###
+    def licenses_sort_direction
+      %w[asc desc].include?(params[:licenses_direction]) ?  params[:licenses_direction] : "asc"
+    end
+
+    ### Secure the licenses sort column name ###
+    def licenses_sort_column
+      ["SoftwareVersionId", "AccountHeadId", "ExpireDate", "DaysBetweenUpdate", "AutoUpdate", "IsDemoLicense", "IsSingleUser"].include?(params[:licenses_column]) ? params[:licenses_column] : "SoftwareVersionId"
     end
 end

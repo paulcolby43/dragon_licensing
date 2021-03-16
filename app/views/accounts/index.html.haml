@@ -37,15 +37,15 @@
                 %button.btn.btn-primary{:type => "button"} Save changes
 
       .table-responsive
-        %table.table.table-striped.table-sm
+        %table.table.table-striped
           %thead
             %tr
               %th Active
-              %th Account #
+              %th #
               %th Yard Name
               %th Phone
-              %th Dragon Classic
-              %th Dragon X
+              %th Classic
+              %th X
               %th Address
               %th Address 2
               %th City
@@ -63,11 +63,11 @@
                 %td= account.phone_number
                 %td= account.scrap_dragon_classic? ? 'Yes' : 'No'
                 %td= account.scrap_dragon_x? ? 'Yes' : 'No'
-                %td= account.address
+                %td.highlightable= account.address
                 %td= account.address_2
-                %td= account.city
-                %td= account.state
-                %td= account.zip
+                %td.highlightable= account.city
+                %td.highlightable= account.state
+                %td.highlightable= account.zip
                 %td= account.suspended? ? 'Yes' : 'No'
                 %td.highlightable= account.notes
                 %td

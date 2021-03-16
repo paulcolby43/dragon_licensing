@@ -12,16 +12,16 @@
             %button.btn.btn-sm.btn-outline-secondary{:type => "button"} Export
 
       .table-responsive
-        %table.table.table-striped.table-sm
+        %table.table.table-striped
           %thead
             %tr
-              %th Software Name
-              %th Account
-              %th Expire Date
-              %th Days Between Update
-              %th Auto Update
-              %th Is Demo License
-              %th Is Single User
+              %th= licenses_sort_link 'SoftwareVersionId', "Software Name"
+              %th= licenses_sort_link 'AccountHeadId', "Account"
+              %th= licenses_sort_link 'ExpireDate', "Expire Date"
+              %th= licenses_sort_link 'DaysBetweenUpdate', "Days Between Update"
+              %th= licenses_sort_link 'AutoUpdate', "Auto Update"
+              %th= licenses_sort_link 'IsDemoLicense', "Demo License"
+              %th= licenses_sort_link 'IsSingleUser', "Single User"
               %th
           %tbody
             - @licenses.each do |license|

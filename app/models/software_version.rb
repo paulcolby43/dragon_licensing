@@ -4,6 +4,8 @@ class SoftwareVersion < ApplicationRecord
   
   has_many :licenses, :foreign_key => "SoftwareVersionId"
   
+  before_create :generate_unique_guid
+  
   
   #############################
   #     Instance Methods      #
@@ -35,6 +37,13 @@ class SoftwareVersion < ApplicationRecord
   
   def is_default_license?
     self.IsDefaultLicense
+  end
+  
+  def generate_unique_guid
+    begin
+      guid = SecureRandom.uuid
+      self.Id = guid
+    end while self.class.exists?(Id: guid)
   end
   
   #############################
