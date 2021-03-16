@@ -5,36 +5,27 @@
     = render partial: 'shared/navbars/side_bar_menu'
     %main.col-md-9.ms-sm-auto.col-lg-10.px-md-4
       .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
-        %h1.h2= @software_version.name
+        %h1.h2= "License for #{@software_version.name}"
         .float-end= link_to 'Edit', edit_license_path(@license), class: 'btn btn-primary'
-      %ul.list-group.list-group-horizontal
-        %li.list-group-item
-          %p
-            %strong Software Version
-            = link_to @software_version.name, @software_version
-        %li.list-group-item
-          %p
-            %strong Account
-            = link_to @account.yard_name, @account
-        %li.list-group-item
-          %p
-            %strong Expire Date
-            = @license.expire_date.strftime("%m/%d/%Y")
-        %li.list-group-item
-          %p
-            %strong Days Between Update
-            = @license.days_between_update
-      %ul.list-group.list-group-horizontal
-        %li.list-group-item
-          %p
-            %strong Auto Update
-            = @license.auto_update? ? 'Yes' : 'No'
-        %li.list-group-item
-          %p
-            %strong Is Demo License
-            = @license.is_demo_license? ? 'Yes' : 'No'
-        %li.list-group-item
-          %p
-            %strong Is Single User
-            = @license.is_single_user? ? 'Yes' : 'No'
-        
+      .card.col-sm-8
+        .row
+          .col-sm-4
+            .card-body
+              %h5.card-title Software Version
+              %p.card-text= link_to @software_version.name, @software_version
+              %h5.card-title Account
+              %p.card-text= link_to @account.yard_name, @account
+              %h5.card-title Expire Date
+              %p.card-text= @license.expire_date.strftime("%m/%d/%Y")
+          .col-sm-4
+            .card-body
+              %h5.card-title Days Between Update
+              %p.card-text= @license.days_between_update
+              %h5.card-title Auto Update
+              %p.card-text= @license.auto_update? ? 'Yes' : 'No'
+              %h5.card-title Demo License
+              %p.card-text= @license.is_demo_license? ? 'Yes' : 'No'
+          .col-sm-4
+            .card-body
+              %h5.card-title Single User
+              %p.card-text= @license.is_single_user? ? 'Yes' : 'No'

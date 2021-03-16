@@ -3,21 +3,25 @@
     .alert.alert-danger.alert-dismissible
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       = "#{attr} #{msg}" if @license.errors[attr].first == msg
-  = f.hidden_field :AccountHeadId
+  =# f.hidden_field :AccountHeadId
   
   .row.mb-4
-    - unless @license.account.blank?
-      .row.mb-4
-        %p.lead
-          %strong Account:
-          = @license.account.yard_name
-    - else
-      .col-sm-4
-        %label.form-label{:for => "AccountHeadId"} Account
-        = f.select :AccountHeadId, options_from_collection_for_select(Account.all, "Id", "YardName", @license.AccountHeadId), {prompt: 'Choose Account'}, {class: "form-control", required: true}
+    -#
+      - unless @license.account.blank?
+        .row.mb-4
+          %p.lead
+            %strong Account:
+            = @license.account.yard_name
+      - else
+        .col-sm-4
+          %label.form-label{:for => "AccountHeadId"} Account
+          = f.select :AccountHeadId, options_from_collection_for_select(Account.all, "Id", "YardName", @license.AccountHeadId), {prompt: 'Choose Account'}, {class: "form-control", required: true}
+    .col-sm-4
+      %label.form-label{:for => "AccountHeadId"} Account
+      = f.select :AccountHeadId, options_from_collection_for_select(Account.all, "Id", "YardName", params[:account_id].blank? ? @license.AccountHeadId : params[:account_id]), {prompt: 'Choose Account'}, {class: "form-control", required: true}
     .col-sm-4
       %label.form-label{:for => "SoftwareVersionId"} Software Version
-      = f.select :SoftwareVersionId, options_from_collection_for_select(SoftwareVersion.all, "Id", "SoftwareName", @license.SoftwareVersionId), {prompt: 'Choose Software'}, {class: "form-control", required: true}
+      = f.select :SoftwareVersionId, options_from_collection_for_select(SoftwareVersion.all, "Id", "SoftwareName", params[:software_version_id].blank? ? @license.SoftwareVersionId : params[:software_version_id]), {prompt: 'Choose Software'}, {class: "form-control", required: true}
   .row.mb-4
     .col-sm-3
       %label.form-label{:for => "ExpireDate"} Expire Date
