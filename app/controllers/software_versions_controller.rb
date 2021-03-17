@@ -4,7 +4,7 @@ class SoftwareVersionsController < ApplicationController
   # GET /software_versions
   # GET /software_versions.json
   def index
-    @software_versions = SoftwareVersion.all
+    @software_versions = SoftwareVersion.all.order('SoftwareType asc')
   end
 
   # GET /software_versions/1

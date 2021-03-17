@@ -1,4 +1,8 @@
 = form_for @account do |f|
+  - @account.errors.each do |attr, msg|
+    .alert.alert-danger.alert-dismissible
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      = "#{attr} #{msg}" if @account.errors[attr].first == msg
   .row.mb-4
     .col-sm-4
       %label.form-label{:for => "YardName"} Yard Name

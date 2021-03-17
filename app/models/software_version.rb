@@ -6,6 +6,8 @@ class SoftwareVersion < ApplicationRecord
   
   before_create :generate_unique_guid
   
+  validates :SoftwareType, uniqueness: true
+  
   
   #############################
   #     Instance Methods      #
