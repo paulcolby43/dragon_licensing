@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    domainname: "licensing"
+    ports:
+      - "3000:3000"
+    image: tranact/licensing_web_app:development
+    environment:
+      - LICENSING_HOST=${LICENSING_HOST}
+      - LICENSING_DATABASE=${LICENSING_DATABASE}
+      - LICENSING_USERNAME=${LICENSING_USERNAME}
+      - LICENSING_PASSWORD=${LICENSING_PASSWORD}
+    #deploy:
+    #  resources:
+    #    limits:
+    #      #cpus: 1
+    #      cpus: '1'
+    #      memory: 4GB
+    #    reservations:
+    #      #cpus: 0.25
+    #      cpus: '1'
+    #      memory: 4GB
