@@ -3,6 +3,7 @@ default: &default
   host: <%= ENV["LICENSING_HOST"] %>
   username: <%= ENV["LICENSING_USERNAME"] %>
   password: <%= ENV["LICENSING_PASSWORD"] %>
+  azure: true
   
 development:
   <<: *default

@@ -37,5 +37,6 @@
                     = link_to 'Show', license, class: 'btn btn-sm btn-outline-secondary'
                     = link_to 'Edit', edit_license_path(license), class: 'btn btn-sm btn-primary'
                     = link_to 'Delete', license, :method => :delete, class: 'btn btn-sm btn-danger', :data => { :confirm => 'Are you sure you want to delete this license? It cannot be undone.' }
+        = paginate @licenses
       - else
         %p.lead None

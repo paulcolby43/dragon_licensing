@@ -6,7 +6,7 @@ class LicensesController < ApplicationController
   # GET /licenses
   # GET /licenses.json
   def index
-    @licenses = License.all.order("#{licenses_sort_column} #{licenses_sort_direction}")
+    @licenses = License.all.order("#{licenses_sort_column} #{licenses_sort_direction}").page params[:page]
   end
 
   # GET /licenses/1
