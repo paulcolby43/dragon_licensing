@@ -4,7 +4,7 @@ class SoftwareVersion < ApplicationRecord
   
   has_many :licenses, :foreign_key => "SoftwareVersionId"
   
-  before_create :generate_unique_guid
+  before_create :generate_unique_guid, :set_software_type_number
   
   validates :SoftwareType, uniqueness: true
   
@@ -46,6 +46,11 @@ class SoftwareVersion < ApplicationRecord
       guid = SecureRandom.uuid
       self.Id = guid
     end while self.class.exists?(Id: guid)
+  end
+  
+  def set_software_type_number
+    last_number = SoftwareVersion.maximum("SoftwareType")
+    self.SoftwareType = last_number + 1
   end
   
   #############################

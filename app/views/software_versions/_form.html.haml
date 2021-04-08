@@ -14,9 +14,10 @@
     .col-sm-3
       %label.form-label{:for => "ReleaseDate"} Release Date
       = f.text_field :ReleaseDate, class: "form-control flatpickr", placeholder: 'Release Date', required: true
-    .col-sm-4
-      %label.form-label{:for => "SoftwareType"} Software Type
-      = f.number_field :SoftwareType, class: "form-control", placeholder: 'Software Type', required: true
+    - unless @software_version.new_record?
+      .col-sm-4
+        %label.form-label{:for => "SoftwareType"} Software Type
+        = f.number_field :SoftwareType, class: "form-control", placeholder: 'Software Type', readonly: true
   .row.mb-4
     .col-sm-2
       %label.form-label{:for => "IsSDX"} SDX
