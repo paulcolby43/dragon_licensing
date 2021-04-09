@@ -1,0 +1,10 @@
+.nested_fields
+  = f.hidden_field :_destroy
+  .float-end= link_to "<i class='fas fa-trash'></i> Delete".html_safe, '#', class: "btn btn-sm btn-outline-danger remove_fields"
+  .col-sm-9
+    %label.form-label{:for => "description"} Description
+    = f.text_field :description, class: "form-control", placeholder: 'Description'
+  .col-sm-9
+    %label.form-label{:for => "address"} Address
+    = f.text_area :address, class: "form-control", placeholder: 'Address'
+  %hr

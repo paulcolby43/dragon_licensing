@@ -20,6 +20,7 @@ class LicensesController < ApplicationController
   def new
 #    @account = Account.find(params[:account_id]) unless params[:account_id].blank?
     @license = License.new(AccountHeadId: params[:account_id])
+    @license.devices.build
   end
 
   # GET /licenses/1/edit
@@ -77,7 +78,8 @@ class LicensesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def license_params
-      params.require(:license).permit(:AccountHeadId, :SoftwareVersionId, :ExpireDate, :DaysBetweenUpdate, :AutoUpdate, :IsDemoLicense, :IsSingleUser)
+      params.require(:license).permit(:AccountHeadId, :SoftwareVersionId, :ExpireDate, :DaysBetweenUpdate, :AutoUpdate, :IsDemoLicense, :IsSingleUser, :number_of_devices, :number_of_subnets,
+      devices_attributes: [:id, :description, :address, :license_guid, :_destroy], cameras_attributes: [:id, :name, :ip_address, :license_guid, :_destroy])
     end
     
     ### Secure the licenses sort direction ###

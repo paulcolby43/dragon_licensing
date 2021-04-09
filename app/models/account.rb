@@ -4,6 +4,8 @@ class Account < ApplicationRecord
   
   has_many :account_activities, :foreign_key => 'AccountHeadId'
   has_many :licenses, :foreign_key => 'AccountHeadId'
+  has_many :devices, through: :licenses
+  has_many :cameras, through: :licenses
   
   before_create :generate_unique_guid
   before_create :set_address2_to_empty_string_if_nil, if: Proc.new { |account| account.Address2.nil? }

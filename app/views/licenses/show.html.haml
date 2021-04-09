@@ -7,7 +7,7 @@
       .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
         %h1.h2= "License for #{@software_version.name}"
         .float-end= link_to 'Edit', edit_license_path(@license), class: 'btn btn-primary'
-      .card.col-sm-8
+      .card.col-sm-12
         .row
           .col-sm-4
             .card-body
@@ -29,3 +29,48 @@
             .card-body
               %h5.card-title Single User
               %p.card-text= @license.is_single_user? ? 'Yes' : 'No'
+              
+      %br
+      .row
+        - unless @license.number_of_devices.blank?
+          .col-sm-6
+            #ezcash.accordion
+              .accordion-item
+                %h2#headingOne.accordion-header
+                  %button.accordion-button.collapsed{"aria-controls" => "collapseOne", "aria-expanded" => "false", "data-bs-target" => "#collapse_ezcash", "data-bs-toggle" => "collapse", :type => "button"}
+                    EZcash
+                #collapse_ezcash.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#ezcash"}
+                  .accordion-body
+                    %h5.card-title Number of Devices
+                    %p.card-text= @license.number_of_devices
+                    - @license.devices.each do |device|
+                      %p
+                        .card
+                          .card-body
+                            %p.card-text
+                              %b Description
+                              = device.description
+                            %p.card-text
+                              %b Address
+                              = device.address
+        - unless @license.number_of_subnets.blank?
+          .col-sm-6
+            #jpegger.accordion
+              .accordion-item
+                %h2#headingOne.accordion-header
+                  %button.accordion-button.collapsed{"aria-controls" => "collapseOne", "aria-expanded" => "false", "data-bs-target" => "#collapse_jpegger", "data-bs-toggle" => "collapse", :type => "button"}
+                    JPEGger
+                #collapse_jpegger.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#jpegger"}
+                  .accordion-body
+                    %h5.card-title Number of Subnets
+                    %p.card-text= @license.number_of_subnets
+                    - @license.cameras.each do |camera|
+                      %p
+                        .card
+                          .card-body
+                            %p.card-text
+                              %b Name
+                              = camera.name
+                            %p.card-text
+                              %b IP Address
+                              = camera.ip_address
