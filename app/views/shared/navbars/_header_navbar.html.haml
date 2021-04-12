@@ -8,4 +8,5 @@
       = text_field_tag :q, params[:q], placeholder: 'Search', class: "form-control form-control-dark w-100"
   %ul.navbar-nav.px-3
     %li.nav-item.text-nowrap
-      %a.nav-link{:href => "#"} Sign out
+      %a.nav-link{:href => destroy_employee_session_path, title: "Sign out", method: :delete, data: { confirm: 'Are you sure you want to sign out?' }}
+        %i.fas.fa-sign-out-alt

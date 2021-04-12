@@ -1,5 +1,6 @@
 class SoftwareVersionsController < ApplicationController
   before_action :set_software_version, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_employee!
 
   # GET /software_versions
   # GET /software_versions.json

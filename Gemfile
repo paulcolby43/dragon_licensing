@@ -38,9 +38,12 @@ gem "figaro"
 # Use haml views
 gem 'haml'
 gem 'haml-rails'
+gem "html2haml"
 
 # Pagination: https://github.com/amatsuda/kaminari
 gem 'kaminari'
+
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

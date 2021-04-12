@@ -4,12 +4,15 @@ class Camera < ApplicationRecord
   
   validates :name, presence: true
   validates :ip_address, presence: true
+  validates :license_guid, presence: true
   
   #############################
   #     Instance Methods      #
   #############################
   
-  
+  def ip_address_as_subnet
+    IPAddr.new "#{ip_address}/24"
+  end
   
   #############################
   #     Class Methods         #

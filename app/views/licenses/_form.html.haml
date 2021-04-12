@@ -48,9 +48,15 @@
               EZcash
           #collapse_ezcash.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#ezcash"}
             .accordion-body
-              .col-sm-4
-                %label.form-label{:for => "number_of_devices"} Number of Devices
-                = f.number_field :number_of_devices, class: "form-control", placeholder: 'Number of Devices', required: false, :min => "0", :pattern => "[0-9]*"
+              .row.mb-4
+                .col-sm-2
+                  %label.form-label{:for => "number_of_devices"} Devices
+                  = f.number_field :number_of_devices, class: "form-control", placeholder: 'Number of Devices', required: false, :min => "0", :pattern => "[0-9]*"
+                .col-sm-3
+                  %label.form-label{:for => "mac_address"} Mac
+                .col-sm-3
+                  %label.form-label{:for => "key"} Key
+              -#
               %hr
               .col-sm-12
                 = f.fields_for :devices do |device_form|
@@ -65,9 +71,17 @@
               JPEGger
           #collapse_jpegger.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#jpegger"}
             .accordion-body
-              .col-sm-4
-                %label.form-label{:for => "number_of_subnets"} Number of Subnets
-                = f.number_field :number_of_subnets, class: "form-control", placeholder: 'Number of Subnets', required: false, :min => "0", :pattern => "[0-9]*"
+              .row.mb-4
+                .col-sm-2
+                  %label.form-label{:for => "number_of_subnets"} Subnets
+                  = f.number_field :number_of_subnets, class: "form-control", placeholder: 'Number of Subnets', required: false, :min => "0", :pattern => "[0-9]*"
+                .col-sm-2
+                  %label.form-label{:for => "number_of_cameras"} Cameras
+                .col-sm-3
+                  %label.form-label{:for => "mac_address"} Mac
+                .col-sm-3
+                  %label.form-label{:for => "key"} Key
+              -#
               %hr
               .col-sm-12
                 = f.fields_for :cameras do |camera_form|

@@ -17,6 +17,14 @@
         %a.nav-link{class: "#{params[:controller] == 'software_versions' ? 'active' : ''}", href: software_versions_path}
           %i.fas.fa-desktop
           Software
+      %li.nav-item
+        %a.nav-link{class: "#{params[:controller] == 'employees' ? 'active' : ''}", href: employees_path}
+          %i.fas.fa-users
+          Employees
+      %li.nav-item
+        %a.nav-link{class: "#{params[:controller] == 'devise' ? 'active' : ''}", href: edit_employee_registration_path(current_employee)}
+          %i.fas.fa-cog
+          My Account
     %h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted
       %span Saved reports
       %a.link-secondary{"aria-label" => "Add a new report", :href => "#"}

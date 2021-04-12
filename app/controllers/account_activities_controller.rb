@@ -1,5 +1,6 @@
 class AccountActivitiesController < ApplicationController
   before_action :set_account_activity, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_employee!
 
   # GET /account_activities
   # GET /account_activities.json

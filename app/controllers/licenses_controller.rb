@@ -1,5 +1,6 @@
 class LicensesController < ApplicationController
   before_action :set_license, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_employee!
   
   helper_method :licenses_sort_column, :licenses_sort_direction
 
@@ -14,6 +15,10 @@ class LicensesController < ApplicationController
   def show
     @software_version = @license.software_version
     @account = @license.account
+    respond_to do |format|
+      format.html { }
+      format.json { render json: JSON.pretty_generate(JSON.parse(@license.to_json)) }
+    end
   end
 
   # GET /licenses/new
@@ -35,10 +40,11 @@ class LicensesController < ApplicationController
     respond_to do |format|
       if @license.save
         format.html { redirect_to @license, notice: 'License was successfully created.' }
-        format.json { render :show, status: :created, location: @license }
+        format.json { render json: @license, status: 201 }
       else
         format.html { render :new }
-        format.json { render json: @license.errors, status: :unprocessable_entity }
+#        format.json { render json: @license.errors, status: :unprocessable_entity }
+        format.json { render json: {error: @license.errors}, status: 400 }
       end
     end
   end
@@ -48,11 +54,12 @@ class LicensesController < ApplicationController
   def update
     respond_to do |format|
       if @license.update(license_params)
-        format.html { redirect_to @license, notice: 'LicenseActivitiy was successfully updated.' }
-        format.json { render :show, status: :ok, location: @license }
+        format.html { redirect_to @license, notice: 'License was successfully updated.' }
+        format.json { render json: @license, status: 200 }
       else
         format.html { render :edit }
-        format.json { render json: @license.errors, status: :unprocessable_entity }
+#        format.json { render json: @license.errors, status: :unprocessable_entity }
+        format.json { render json: {error: @license.errors}, status: 400 }
       end
     end
   end
