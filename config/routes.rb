@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   
   resources :account_activities
   resources :accounts
-  resources :licenses
+  resources :licenses do
+    member do
+      get 'file_download'
+    end
+  end
   resources :software_versions
   resources :devices
   resources :cameras

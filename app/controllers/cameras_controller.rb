@@ -1,6 +1,6 @@
 class CamerasController < ApplicationController
   before_action :set_camera, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_employee!
+#  before_action :authenticate_employee!
   
   helper_method :cameras_sort_column, :cameras_sort_direction
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_09_192904) do
+ActiveRecord::Schema.define(version: 2021_04_13_182010) do
 
   create_table "AccountActivity", primary_key: "Id", id: :uuid, default: -> { "newid()" }, force: :cascade do |t|
     t.uuid "AccountHeadId", null: false
@@ -128,6 +128,9 @@ ActiveRecord::Schema.define(version: 2021_04_09_192904) do
     t.boolean "IsSingleUser", null: false
     t.integer "number_of_devices"
     t.integer "number_of_subnets"
+    t.integer "number_of_cameras"
+    t.string "jpegger_mac_address"
+    t.string "ezcash_mac_address"
   end
 
   create_table "NextAccountNumber", primary_key: "Id", id: :uuid, default: -> { "newid()" }, force: :cascade do |t|

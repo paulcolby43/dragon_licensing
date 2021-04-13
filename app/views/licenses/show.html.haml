@@ -43,6 +43,8 @@
                   .accordion-body
                     %h5.card-title Number of Devices
                     %p.card-text= @license.number_of_devices
+                    %h5.card-title Mac Address
+                    %p.card-text= @license.ezcash_mac_address
                     - @license.devices.each do |device|
                       %p
                         .card
@@ -62,8 +64,17 @@
                     JPEGger
                 #collapse_jpegger.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#jpegger"}
                   .accordion-body
-                    %h5.card-title Number of Subnets
-                    %p.card-text= @license.number_of_subnets
+                    .row.mb-4
+                      .col-sm-6
+                        %h5.card-title Number of Subnets
+                        %p.card-text= @license.number_of_subnets
+                      .col-sm-6
+                        %h5.card-title Number of Cameras
+                        %p.card-text= @license.number_of_cameras
+                    .row.mb-4
+                      .col-sm-6
+                        %h5.card-title Mac Address
+                        %p.card-text= @license.jpegger_mac_address
                     - @license.cameras.each do |camera|
                       %p
                         .card

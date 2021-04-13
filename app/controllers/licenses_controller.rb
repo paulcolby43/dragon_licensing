@@ -1,6 +1,6 @@
 class LicensesController < ApplicationController
-  before_action :set_license, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_employee!
+  before_action :set_license, only: [:show, :edit, :update, :destroy, :file_download]
+  before_action :authenticate_employee!, except: [:index, :show, :file_download]
   
   helper_method :licenses_sort_column, :licenses_sort_direction
 
@@ -76,6 +76,11 @@ class LicensesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # GET /licenses/1/file_download
+  def file_download
+    send_data @license.to_csv, filename: "License#{@license.Id}"
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -86,7 +91,8 @@ class LicensesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def license_params
       params.require(:license).permit(:AccountHeadId, :SoftwareVersionId, :ExpireDate, :DaysBetweenUpdate, :AutoUpdate, :IsDemoLicense, :IsSingleUser, :number_of_devices, :number_of_subnets,
-      devices_attributes: [:id, :description, :address, :license_guid, :_destroy], cameras_attributes: [:id, :name, :ip_address, :license_guid, :_destroy])
+        :number_of_cameras, :jpegger_mac_address, :ezcash_mac_address,
+        devices_attributes: [:id, :description, :address, :license_guid, :_destroy], cameras_attributes: [:id, :name, :ip_address, :license_guid, :_destroy])
     end
     
     ### Secure the licenses sort direction ###

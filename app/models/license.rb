@@ -60,4 +60,18 @@ class License < ApplicationRecord
   #############################
   #     Class Methods         #
   #############################
+  
+  def to_csv
+    require 'csv'
+    
+    CSV.generate(headers: false, col_sep: ";") do |csv|
+      unless number_of_devices.blank?
+        csv << ["EZCash", "#{self.number_of_devices}", "#{self.ExpireDate.strftime('%m/%d/%Y')}", "#{self.Id}"]
+      end
+      unless number_of_subnets.blank? and number_of_cameras.blank?
+        csv << ["JPeg", "#{self.number_of_subnets}", "#{self.number_of_cameras}", "#{self.ExpireDate.strftime('%m/%d/%Y')}", "#{self.jpegger_mac_address}", "#{self.Id}"]
+      end
+    end
+  end
+  
 end
