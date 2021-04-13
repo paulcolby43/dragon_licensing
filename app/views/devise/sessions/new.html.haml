@@ -4,7 +4,7 @@
       .py-5.text-center
         %h2 Sign In
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        = render "devise/shared/error_messages", resource: resource
+        = render 'shared/flash_messages'
         .row.mb-4
           .col-sm-4
             %label.form-label{:for => "Email"} Email
