@@ -1,0 +1,39 @@
+-@title= @employee.full_name
+= render partial: 'shared/navbars/header_navbar'
+.container-fluid
+  .row
+    = render partial: 'shared/navbars/side_bar_menu'
+    %main.col-md-9.ms-sm-auto.col-lg-10.px-md-4
+      .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        %h1.h2= @employee.full_name
+        .float-end= link_to 'Edit', edit_employee_path(@employee), class: 'btn btn-primary'
+      .card.col-sm-8
+        .row
+          .col-sm-6
+            .card-body
+              %h5.card-title Email
+              %p.card-text= @employee.Email
+              %h5.card-title First Name
+              %p.card-text= @employee.FirstName
+              %h5.card-title Last Name
+              %p.card-text= @employee.LastName
+              %h5.card-title Active
+              %p.card-text= @employee.IsActive? ? 'Yes' : 'No'
+          .col-sm-6
+            .card-body
+              - unless @employee.current_sign_in_ip.blank?
+                %h5.card-title Current Sign In IP
+                %p.card-text= @employee.current_sign_in_ip
+              - unless @employee.last_sign_in_ip.blank?
+                %h5.card-title Last Sign In IP
+                %p.card-text= @employee.current_sign_in_ip
+              - unless @employee.current_sign_in_at.blank?
+                %h5.card-title Current Sign In At
+                %p.card-text= @employee.current_sign_in_at
+              - unless @employee.last_sign_in_at.blank?
+                %h5.card-title Last Sign In At
+                %p.card-text= @employee.last_sign_in_at
+              - unless @employee.sign_in_count.blank?
+                %h5.card-title Sign In Count
+                %p.card-text= @employee.sign_in_count
+              

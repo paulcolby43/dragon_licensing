@@ -8,7 +8,9 @@ class Employee < ApplicationRecord
   #     Instance Methods      #
   #############################
   
-  
+  def full_name
+    "#{self.FirstName} #{self.LastName}"
+  end
   
   #############################
   #     Class Methods         #
