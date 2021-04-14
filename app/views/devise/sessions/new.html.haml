@@ -22,6 +22,10 @@
             = link_to 'Cancel', :back, class: "btn btn-outline-secondary"
             %button.btn.btn-primary{:type => "submit", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Log in"}} 
               Log in
+        .row.mb-4
+          .col-6
+            - if devise_mapping.recoverable?
+              = link_to "Forgot your password?", new_password_path(resource_name)
         -#
           .row.mb-4
             .auth-links

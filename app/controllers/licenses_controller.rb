@@ -79,7 +79,7 @@ class LicensesController < ApplicationController
   
   # GET /licenses/1/file_download
   def file_download
-    send_data @license.to_csv, filename: "License#{@license.Id}"
+    send_data @license.to_csv, filename: "License#{@license.Id}.lic"
   end
 
   private

@@ -32,9 +32,29 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
+  
+#  config.action_mailer.default_url_options = { host: 'localhost', port: 8081 }
+#  config.action_mailer.default_url_options = { host: ENV['APPLICATION_HOST'] }
+  config.action_mailer.default_url_options = { host: "https://licensing.eastus.azurecontainer.io" }
+  config.action_mailer.asset_host = "https://licensing.eastus.azurecontainer.io"
+
+  
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address: "smtp.office365.com",
+    port: 587,
+#    domain: "scrapdragon.com",
+#    domain: "localhost",
+    domain: "licensing.eastus.azurecontainer.io",
+    authentication: "login",
+    enable_starttls_auto: true,
+    user_name: ENV["GODADDY_MAIL_USERNAME"],
+    password: ENV["GODADDY_MAIL_PASSWORD"]
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

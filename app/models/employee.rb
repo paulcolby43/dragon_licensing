@@ -12,6 +12,10 @@ class Employee < ApplicationRecord
     "#{self.FirstName} #{self.LastName}"
   end
   
+  def email
+    self.Email
+  end
+  
   #############################
   #     Class Methods         #
   #############################

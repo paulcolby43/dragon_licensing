@@ -49,7 +49,7 @@
           #collapse_ezcash.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#ezcash"}
             .accordion-body
               .row.mb-4
-                .col-sm-2
+                .col-sm-4
                   %label.form-label{:for => "number_of_devices"} Devices
                   = f.number_field :number_of_devices, class: "form-control", placeholder: 'Number of Devices', required: false, :min => "0", :pattern => "[0-9]*"
               .row.mb-4
