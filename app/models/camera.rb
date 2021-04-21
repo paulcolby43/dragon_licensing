@@ -1,5 +1,5 @@
 class Camera < ApplicationRecord
-  belongs_to :license, :foreign_key => 'license_guid'
+  belongs_to :license, :foreign_key => 'license_guid', optional: true
   belongs_to :account, optional: true
   
   validates :name, presence: true

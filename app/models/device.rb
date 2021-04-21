@@ -1,10 +1,10 @@
 class Device < ApplicationRecord
-  belongs_to :license, :foreign_key => 'license_guid'
+  belongs_to :license, :foreign_key => 'license_guid', optional: true
   belongs_to :account, optional: true
   
   validates :description, presence: true
   validates :address, presence: true
-  validates :license_guid, presence: true
+  validates :license_guid, presence: true, on: :update
   validate :license_limit, on: :create
   
   #############################

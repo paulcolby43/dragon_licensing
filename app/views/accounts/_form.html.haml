@@ -12,7 +12,7 @@
       = f.text_field :AccountNumber, class: "form-control", placeholder: 'Account Number', required: true
     .col-sm-4
       %label.form-label{:for => "PhoneNumber"} Phone Number
-      = f.text_field :PhoneNumber, class: "form-control", placeholder: 'Phone Number', required: true
+      = f.text_field :PhoneNumber, class: "form-control", placeholder: 'Phone Number'
   .row.mb-4
     .col-sm-4
       %label.form-label{:for => "Address"} Address
@@ -46,7 +46,7 @@
   .row.mb-4
     .col-sm-6
       %label.form-label{:for => "Notes"} Notes
-      = f.text_area :Notes, class: "form-control", placeholder: 'Notes', required: true
+      = f.text_area :Notes, class: "form-control", placeholder: 'Notes'
   .row.mb-4
     %hr
     .col-6

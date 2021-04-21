@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    domainname: "licensing"
+    ports:
+      - "3000:3000"
+    image: tranact/licensing_web_app:development
+  nginx:
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    domainname: "licensing"
+    depends_on:
+      - web
+    ports:
+      - 80:80
+      - 443:443
+    image: tranact/licensing_nginx:development

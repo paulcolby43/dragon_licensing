@@ -1,6 +1,6 @@
 class LicensesController < ApplicationController
   before_action :set_license, only: [:show, :edit, :update, :destroy, :file_download]
-  before_action :authenticate_employee!, except: [:index, :show, :file_download]
+  before_action :authenticate_employee!, except: [:index, :show, :file_download, :ezlicense]
   
   helper_method :licenses_sort_column, :licenses_sort_direction
 
@@ -77,10 +77,23 @@ class LicensesController < ApplicationController
     end
   end
   
+  ### Start Legacy License File Generation ###
   # GET /licenses/1/file_download
   def file_download
-    send_data @license.to_csv, filename: "License#{@license.Id}.lic"
+    send_data @license.to_csv, filename: "#{@license.account.AccountNumber}.lic" unless @license.blank?
   end
+  
+  # GET /licenses/:account_number/ezlicense
+  def ezlicense
+    @account = Account.find_by(AccountNumber: params[:id])
+    @license = @account.licenses.first unless @account.blank?
+    unless @license.blank?
+      render plain: @license.to_csv
+    else
+      render text: 'Not found'
+    end
+  end
+  ### End Legacy License File Generation ###
 
   private
     # Use callbacks to share common setup or constraints between actions.

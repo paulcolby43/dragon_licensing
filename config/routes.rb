@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :accounts
   resources :licenses do
     member do
-      get 'file_download'
+      get 'ezlicense'
     end
   end
   resources :software_versions
