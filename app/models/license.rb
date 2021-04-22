@@ -64,8 +64,8 @@ class License < ApplicationRecord
   def to_csv
     require 'csv'
     private_key = '3f~4Os^8}a5%+fRp'
-    device_count = self.number_of_devices.to_s unless self.device_count.blank?
-    number_of_sites = self.number_of_subnets.to_s unless self.number_of_sites.blank?
+    device_count = self.number_of_devices.to_s unless self.number_of_devices.blank?
+    number_of_sites = self.number_of_subnets.to_s unless self.number_of_subnets.blank?
     number_of_cameras = self.number_of_cameras.to_s unless self.number_of_cameras.blank?
     name = self.account.YardName unless self.account.blank?
     account_number = self.account.AccountNumber unless self.account.blank?
