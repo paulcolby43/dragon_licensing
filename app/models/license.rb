@@ -74,25 +74,27 @@ class License < ApplicationRecord
     ezcash_mac_converted = self.ezcash_mac_address.gsub("-", "").gsub(" ", "").gsub(":", "").strip.downcase
     jpegger_mac = self.jpegger_mac_address.gsub(" ", "").strip.downcase
     jpegger_mac_converted = self.jpegger_mac_address.gsub("-", "").gsub(" ", "").gsub(":", "").strip.downcase
-    CSV.generate(headers: false, col_sep: ";") do |csv|
+    CSV.generate(headers: false, col_sep: ";", row_sep: ";\r\n") do |csv|
       
       unless number_of_devices.blank?
         # EZCash License
-#        csv << ["EZCash", "#{self.number_of_devices}", "#{self.ExpireDate.strftime('%m/%d/%Y')}", "#{self.Id}"]
-        csv << ["EZCash", "#{device_count}", "#{expire_date}", Digest::MD5.hexdigest('EZCash;' + name + ';' + device_count + ';' + expire_date + ';' + private_key + ';')]
-        # Old EZCash Server License
-        csv << ["EZDev", "#{ezcash_mac}", Digest::MD5.hexdigest('EZDev;' + name + ';' + ezcash_mac_converted + ';' + private_key + ';')]
-        # New Ezcash Server License
-        csv << ["EZD", "#{ezcash_mac}", "#{expire_date}", Digest::MD5.hexdigest('EZD;' + account_number + ';' + ezcash_mac_converted + ';' + expire_date + ';' + + private_key + ';')]
+#        csv << ["EZCash", "#{device_count}", "#{expire_date}", Digest::MD5.hexdigest('EZCash;' + name + ';' + device_count + ';' + expire_date + ';' + private_key + ';')]
+        csv << ["EZCash", "#{device_count}", "#{expire_date}", Digest::MD5.hexdigest('EZCash;' + account_number + ';' + device_count + ';' + expire_date + ';' + private_key + ';')]
       end
-      
       unless number_of_subnets.blank? and number_of_cameras.blank?
         # New Jpegger Server License:
         csv << ["JPD", "#{jpegger_mac}", "#{expire_date}", Digest::MD5.hexdigest('JPD;' + account_number + ';' + jpegger_mac_converted + ';' + expire_date + ';' + private_key + ';')]
         # Jpegger License
-        csv << ["Jpeg", "#{number_of_sites}", "#{number_of_cameras}", "#{expire_date}", "#{jpegger_mac_converted}", Digest::MD5.hexdigest('JPeg;' + name + ';' + number_of_sites + ';' + number_of_cameras + ';' + expire_date + ';' + jpegger_mac_converted + ';' + private_key + ';')]
+#        csv << ["Jpeg", "#{number_of_sites}", "#{number_of_cameras}", "#{expire_date}", "#{jpegger_mac_converted}", Digest::MD5.hexdigest('JPeg;' + name + ';' + number_of_sites + ';' + number_of_cameras + ';' + expire_date + ';' + jpegger_mac_converted + ';' + private_key + ';')]
+        csv << ["JPeg", "#{number_of_sites}", "#{number_of_cameras}", "#{expire_date}", "#{jpegger_mac_converted}", Digest::MD5.hexdigest('JPeg;' + account_number + ';' + number_of_sites + ';' + number_of_cameras + ';' + expire_date + ';' + jpegger_mac_converted + ';' + private_key + ';')]
       end
-      
+      unless number_of_devices.blank?
+        # Old EZCash Server License
+#        csv << ["EZDev", "#{ezcash_mac}", Digest::MD5.hexdigest('EZDev;' + name + ';' + ezcash_mac_converted + ';' + private_key + ';')]
+        csv << ["EZDev", "#{ezcash_mac_converted}", Digest::MD5.hexdigest('EZDev;' + account_number + ';' + ezcash_mac_converted + ';' + private_key + ';')]
+        # New Ezcash Server License
+        csv << ["EZD", "#{ezcash_mac}", "12/30/1899", Digest::MD5.hexdigest('EZD;' + account_number + ';' + ezcash_mac_converted + ';' + '12/30/1899' + ';' + + private_key + ';')]
+      end
     end
   end
   
