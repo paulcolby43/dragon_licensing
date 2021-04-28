@@ -81,4 +81,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
   config.hosts << "licensing.eastus.azurecontainer.io"
+  config.hosts << "tranact.com"
 end
