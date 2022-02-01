@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :devices
   resources :cameras
   resources :employees
+  resources :ezlicenses, only: [:show]
   
   root 'welcome#index'
 end

@@ -86,11 +86,11 @@ class LicensesController < ApplicationController
   # GET /licenses/:account_number/ezlicense
   def ezlicense
     @account = Account.find_by(AccountNumber: params[:id])
-    @licenses = @account.licenses
-    unless @licenses.blank?
+    @licenses = @account.licenses unless @account.blank?
+    unless @account.blank? or @licenses.blank?
       render plain: @licenses.map(&:to_csv).join
     else
-      render text: 'Not found'
+      render plain 'Not found'
     end
   end
   ### End Legacy License File Generation ###
