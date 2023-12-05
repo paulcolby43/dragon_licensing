@@ -80,6 +80,6 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
-  config.hosts << "licensing.eastus.azurecontainer.io"
+  config.hosts << "azuredevlicensing.eastus2.azurecontainer.io"
   config.hosts << "tranact.com"
 end

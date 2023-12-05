@@ -1,0 +1,50 @@
+db/*.sqlite3
+db/*.sqlite3-journal
+
+# ignore .git folders
+.git
+.gitignore
+
+Dockerfile
+*docker-compose.yml
+.dockerignore
+*.yaml
+
+# Ignore all logfiles and tempfiles.
+log/*
+*/log/*
+*/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+config/initializers/secret_token.rb
+config/master.key
+config/application.yml
+
+.env
+*.env
+
+## Environment normalization:
+/.bundle
+/vendor/bundle
+
+.rvmrc
+
+### Ruby ###
+*.gem
+/.config
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+
+public/leads_online/
+dump.rdb
+
+.ruby-version
+.ruby-gemset
+
+# OS X
+.DS_Store
