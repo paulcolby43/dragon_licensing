@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_13_182010) do
+ActiveRecord::Schema.define(version: 2021_04_09_192904) do
 
   create_table "AccountActivity", primary_key: "Id", id: :uuid, default: -> { "newid()" }, force: :cascade do |t|
     t.uuid "AccountHeadId", null: false
@@ -126,11 +126,6 @@ ActiveRecord::Schema.define(version: 2021_04_13_182010) do
     t.boolean "AutoUpdate", null: false
     t.boolean "IsDemoLicense", null: false
     t.boolean "IsSingleUser", null: false
-    t.integer "number_of_devices"
-    t.integer "number_of_subnets"
-    t.integer "number_of_cameras"
-    t.string "jpegger_mac_address"
-    t.string "ezcash_mac_address"
   end
 
   create_table "NextAccountNumber", primary_key: "Id", id: :uuid, default: -> { "newid()" }, force: :cascade do |t|
@@ -152,22 +147,6 @@ ActiveRecord::Schema.define(version: 2021_04_13_182010) do
     t.boolean "IsSDX", default: false, null: false
     t.integer "SoftwareType", null: false
     t.boolean "IsDefaultLicense", default: false, null: false
-  end
-
-  create_table "cameras", force: :cascade do |t|
-    t.string "name"
-    t.string "ip_address"
-    t.string "license_guid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "devices", force: :cascade do |t|
-    t.string "description"
-    t.text "address"
-    t.string "license_guid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "AccountActivity", "AccountHead", column: "AccountHeadId", primary_key: "Id", name: "FK_AccountActivity_AccountHead"

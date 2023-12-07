@@ -8,7 +8,11 @@
       %li.nav-item
         %a.nav-link{class: "#{params[:controller] == 'accounts' ? 'active' : ''}", href: accounts_path}
           %i.fas.fa-building
-          Accounts
+          Dragon Accounts
+      %li.nav-item
+        %a.nav-link{class: "#{params[:controller] == 'tranact_accounts' ? 'active' : ''}", href: tranact_accounts_path}
+          %i.fas.fa-building
+          Tranact Accounts
       %li.nav-item
         %a.nav-link{class: "#{params[:controller] == 'licenses' ? 'active' : ''}", href: licenses_path}
           %i.fas.fa-handshake

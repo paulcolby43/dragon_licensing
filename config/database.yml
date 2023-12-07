@@ -16,3 +16,11 @@ test:
 production:
   <<: *default
   database: <%= ENV["LICENSING_DATABASE"] %>
+  
+tranact_database:
+  adapter: sqlserver
+  host: <%= ENV["TRANACT_LICENSING_HOST"] %>
+  database: <%= ENV["TRANACT_LICENSING_DATABASE"] %>
+  username: <%= ENV["TRANACT_LICENSING_USERNAME"] %>
+  password: <%= ENV["TRANACT_LICENSING_PASSWORD"] %>
+  azure: true

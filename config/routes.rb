@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   resources :employees
   resources :ezlicenses, only: [:show]
   
+  resources :tranact_accounts
+  
   root 'welcome#index'
 end
