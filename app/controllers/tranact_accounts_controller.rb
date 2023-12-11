@@ -17,7 +17,12 @@ class TranactAccountsController < ApplicationController
   # GET /tranact_accounts/1.json
   def show
     respond_to do |format|
-      format.html {}
+      format.html {
+        @software_locations = @tranact_account.software_locations
+        @devices = @tranact_account.devices
+        @servers = @tranact_account.servers
+        @customers = @tranact_account.customers
+      }
       format.json { 
         render json: JSON.pretty_generate(JSON.parse(@tranact_account.to_json(include: :licenses)))
 #        rescue ActiveRecord::RecordNotFound
