@@ -23,6 +23,14 @@ properties:
           value: sdadmin
         - name: LICENSING_PASSWORD
           value: 9yj1RB8zZLVU
+        - name: TRANACT_LICENSING_HOST
+          value: test-scrapdragon.database.windows.net
+        - name: TRANACT_LICENSING_DATABASE
+          value: TrLicenses
+        - name: TRANACT_LICENSING_USERNAME
+          value: sdadmin
+        - name: TRANACT_LICENSING_PASSWORD
+          value: 9yj1RB8zZLVU
         - name: APPLICATION_HOST
           value: localhost:3000
         - name: GODADDY_MAIL_USERNAME 
