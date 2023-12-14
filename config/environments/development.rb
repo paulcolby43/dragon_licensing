@@ -44,16 +44,28 @@ Rails.application.configure do
   
   config.action_mailer.delivery_method = :smtp
 
+#  config.action_mailer.smtp_settings = {
+#    address: "smtp.office365.com",
+#    port: 587,
+##    domain: "scrapdragon.com",
+##    domain: "localhost",
+#    domain: "licensing.eastus.azurecontainer.io",
+#    authentication: "login",
+#    enable_starttls_auto: true,
+#    user_name: ENV["GODADDY_MAIL_USERNAME"],
+#    password: ENV["GODADDY_MAIL_PASSWORD"]
+#  }
+  
   config.action_mailer.smtp_settings = {
-    address: "smtp.office365.com",
-    port: 587,
-#    domain: "scrapdragon.com",
-#    domain: "localhost",
-    domain: "licensing.eastus.azurecontainer.io",
+    address: "mail.scrap-dragon.com",
+    port: 465,
+    domain: "scrap-dragon.com",
     authentication: "login",
-    enable_starttls_auto: true,
-    user_name: ENV["GODADDY_MAIL_USERNAME"],
-    password: ENV["GODADDY_MAIL_PASSWORD"]
+    ssl: true,
+    openssl_verify_mode: 'none',
+#    enable_starttls_auto: true,
+    user_name: ENV['GODADDY_MAIL_USERNAME'],
+    password: ENV['GODADDY_MAIL_PASSWORD']
   }
 
   # Print deprecation notices to the Rails logger.

@@ -10,10 +10,13 @@ class EzlicensesController < ApplicationController
   # GET /ezlicenses/1
   # GET /ezlicenses/1.lic
   def show
-    @account = Account.find_by(AccountNumber: params[:id])
-    @licenses = @account.licenses unless @account.blank?
-    unless @account.blank? or @licenses.blank?
-      render plain: @licenses.map(&:to_csv).join
+#    @account = Account.find_by(AccountNumber: params[:id])
+#    @licenses = @account.licenses unless @account.blank?
+    @tranact_account = TranactAccount.find_by(Account: params[:id])
+#    unless @account.blank? or @licenses.blank?
+    unless @tranact_account.blank?
+#      render plain: @licenses.map(&:to_csv).join
+      render plain: @tranact_account.to_csv
     else
       render plain: 'Not found'
     end
