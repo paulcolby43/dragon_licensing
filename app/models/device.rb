@@ -1,8 +1,8 @@
 class Device < ApplicationRecord
   establish_connection :tranact_database
   
-  belongs_to :customer, :foreign_key => 'CustomerID', optional: true
-  belongs_to :tranact_account
+#  belongs_to :customer, :foreign_key => 'CustomerID', optional: true
+#  belongs_to :tranact_account
   
 #  belongs_to :license, :foreign_key => 'license_guid', optional: true
 #  belongs_to :account, optional: true

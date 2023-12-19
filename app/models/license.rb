@@ -4,8 +4,8 @@ class License < ApplicationRecord
   
   belongs_to :account, :foreign_key => "AccountHeadId"
   belongs_to :software_version, :foreign_key => "SoftwareVersionId"
-  has_many :devices, :foreign_key => 'license_guid'
-  has_many :cameras, :foreign_key => 'license_guid'
+#  has_many :devices, :foreign_key => 'license_guid'
+#  has_many :cameras, :foreign_key => 'license_guid'
   
   accepts_nested_attributes_for :devices, :reject_if => lambda { |d| d[:description].blank? and d[:address].blank? }, allow_destroy: true#, limit: :number_of_devices
   accepts_nested_attributes_for :cameras, :reject_if => lambda { |c| c[:name].blank? and c[:ip_address].blank? }, allow_destroy: true

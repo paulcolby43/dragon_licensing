@@ -18,10 +18,10 @@ class TranactAccountsController < ApplicationController
   def show
     respond_to do |format|
       format.html {
-        @software_locations = @tranact_account.software_locations
-        @devices = @tranact_account.devices
+#        @software_locations = @tranact_account.software_locations
+#        @devices = @tranact_account.devices
         @servers = @tranact_account.servers
-        @customers = @tranact_account.customers
+#        @customers = @tranact_account.customers
       }
       format.json { 
         render json: JSON.pretty_generate(JSON.parse(@tranact_account.to_json(include: :licenses)))
