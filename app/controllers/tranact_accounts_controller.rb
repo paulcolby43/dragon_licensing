@@ -93,6 +93,7 @@ class TranactAccountsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tranact_account_params
-      params.require(:tranact_account).permit(:Account, :Name)
+      params.require(:tranact_account).permit(:Name, :JPEGger, :JPEGgerExpDate, :JPEGgerLicType, :JPEGgerQty, :JPEGgerDemo, :JPEGgerLock, :Dog, :DogExpDate, :DogUsers, :DogDemo, :EZCash, 
+        :EZCashExpDate, :EZCashDevices, :EZCashDemo, :EZCashLock, :CreateDate, :CreateUser, :ModifiedDate, :ModifiedUser, :Active, :LicenseIntervalMonths, :LocationID)
     end
 end

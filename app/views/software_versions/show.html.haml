@@ -45,8 +45,9 @@
                     %th
                 %tbody
                   - @licenses.each do |license|
+                    - account = license.account
                     %tr
-                      %td= link_to license.account.yard_name, license.account
+                      %td= link_to account.yard_name, account
                       %td= license.expire_date.strftime("%m/%d/%Y")
                       %td= license.days_between_update
                       %td= license.auto_update? ? 'Yes' : 'No'
@@ -57,6 +58,7 @@
                         = link_to 'Edit', edit_license_path(license), class: 'btn btn-sm btn-primary'
                         =# link_to 'Delete', license, :method => :delete, class: 'btn btn-sm btn-danger', :data => { :confirm => 'Are you sure you want to delete this license? It cannot be undone.' }
                         = link_to 'Delete', '#', class: 'btn btn-sm btn-danger'
+            = paginate @licenses
           - else
             %p.card-text None
           = link_to 'Create New License', new_license_path(software_version_id: @software_version.id), class: 'btn btn-primary'

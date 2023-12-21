@@ -4,47 +4,55 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       = "#{attr} #{msg}" if @tranact_account.errors[attr].first == msg
   .row.mb-4
-    .col-sm-4
+    .col-xs-12.col-sm-3
       %label.form-label{:for => "Name"} Name
       = f.text_field :Name, class: "form-control", placeholder: 'Name', required: true
-    .col-sm-4
-      %label.form-label{:for => "Account"} Account#
-      = f.text_field :Account, class: "form-control", placeholder: 'Account', required: true
+    - unless @tranact_account.new_record?
+      .col-xs-12.col-sm-3
+        %label.form-label{:for => "Account"} Account#
+        = f.text_field :Account, class: "form-control", placeholder: 'Account', readonly: true
+    - if @tranact_account.new_record?
+      .col-xs-12.col-sm-3
+        %label.form-label{:for => "CreateUser"} Create User
+        = f.text_field :CreateUser, value: current_employee.full_name, class: "form-control", placeholder: 'CreateUser', required: true, readonly: true
+    - else
+      .col-xs-12.col-sm-3
+        %label.form-label{:for => "ModifiedUser"} Modified User
+        = f.text_field :ModifiedUser, value: current_employee.full_name, class: "form-control", placeholder: 'ModifiedUser', required: true, readonly: true
   -#
-    .row.mb-4
-      .col-sm-4
-        %label.form-label{:for => "Address"} Address
-        = f.text_field :Address, class: "form-control", placeholder: 'Address', required: true
-      .col-sm-4
-        %label.form-label{:for => "Address2"} Address 2
-        = f.text_field :Address2, class: "form-control", placeholder: 'Address 2'
-    .row.mb-4
-      .col-sm-4
-        %label.form-label{:for => "City"} City
-        = f.text_field :City, class: "form-control", placeholder: 'City', required: true
-      .col-sm-3
-        %label.form-label{:for => "State"} State
-        = f.text_field :State, class: "form-control", placeholder: 'State', required: true
-      .col-sm-3
-        %label.form-label{:for => "Zip"} Zip
-        = f.text_field :Zip, class: "form-control", placeholder: 'Zip', required: true
-    .row.mb-4
-      .col-sm-2
-        %label.form-label{:for => "IsActive"} Active
-        = f.check_box :IsActive
-      .col-sm-2
-        %label.form-label{:for => "IsSuspended"} Suspended
-        = f.check_box :IsSuspended
-      .col-sm-2
-        %label.form-label{:for => "ScrapDragonClassic"} Scrap Dragon Classic
-        = f.check_box :ScrapDragonClassic
-      .col-sm-2
-        %label.form-label{:for => "ScrapDragonX"} Scrap Dragon X
-        = f.check_box :ScrapDragonX
-    .row.mb-4
-      .col-sm-6
-        %label.form-label{:for => "Notes"} Notes
-        = f.text_area :Notes, class: "form-control", placeholder: 'Notes'
+  .row.mb-4
+    .col-xs-12.col-sm-2
+      %label.form-label{:for => "LicenseIntervalMonths"} License Interval Months
+      = f.text_field :LicenseIntervalMonths, class: "form-control", placeholder: 'LicenseIntervalMonths', required: true
+    .col-xs-12.col-sm-2
+      %label.form-label{:for => "JPEGgerExpDate"} JPEGger Expiration Date
+      = f.text_field :JPEGgerExpDate, class: "form-control flatpickr", placeholder: 'JPEGgerExpDate', required: true
+    .col-xs-12.col-sm-2
+      %label.form-label{:for => "EZCashExpDate"} EZCash Expiration Date
+      = f.text_field :EZCashExpDate, class: "form-control flatpickr", placeholder: 'EZCashExpDate', required: true
+    .col-xs-12.col-sm-2
+      %label.form-label{:for => "JPEGgerQty"} JPEGger Qty
+      = f.text_field :JPEGgerQty, class: "form-control", placeholder: 'JPEGgerQty', required: true
+    .col-xs-12.col-sm-2
+      %label.form-label{:for => "EZCashDevices"} EZCash Devices
+      = f.text_field :EZCashDevices, class: "form-control", placeholder: 'EZCashDevices', required: true
+  .row.mb-4
+    
+    .col-sm-2
+      %label.form-label{:for => "Active"} Active
+      = f.check_box :Active
+    .col-sm-2
+      %label.form-label{:for => "JPEGger"} JPEGger
+      = f.check_box :JPEGger
+    .col-sm-2
+      %label.form-label{:for => "JPEGgerLicType"} JPEGgerLicType
+      = f.check_box :JPEGgerLicType
+    .col-sm-2
+      %label.form-label{:for => "EZCash"} EZCash
+      = f.check_box :EZCash
+    .col-sm-2
+      %label.form-label{:for => "EZCashLock"} EZCashLock
+      = f.check_box :EZCashLock
   .row.mb-4
     %hr
     .col-6

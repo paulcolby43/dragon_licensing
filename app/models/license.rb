@@ -7,12 +7,12 @@ class License < ApplicationRecord
 #  has_many :devices, :foreign_key => 'license_guid'
 #  has_many :cameras, :foreign_key => 'license_guid'
   
-  accepts_nested_attributes_for :devices, :reject_if => lambda { |d| d[:description].blank? and d[:address].blank? }, allow_destroy: true#, limit: :number_of_devices
-  accepts_nested_attributes_for :cameras, :reject_if => lambda { |c| c[:name].blank? and c[:ip_address].blank? }, allow_destroy: true
+#  accepts_nested_attributes_for :devices, :reject_if => lambda { |d| d[:description].blank? and d[:address].blank? }, allow_destroy: true#, limit: :number_of_devices
+#  accepts_nested_attributes_for :cameras, :reject_if => lambda { |c| c[:name].blank? and c[:ip_address].blank? }, allow_destroy: true
   
   before_create :generate_unique_guid
   
-  validate :devices_limit, on: :update
+#  validate :devices_limit, on: :update
   
   
   #############################
@@ -53,9 +53,9 @@ class License < ApplicationRecord
     end while self.class.exists?(Id: guid)
   end
   
-  def devices_limit
-    errors.add(:license, "Number of devices limit exceeded. You must first delete one or more devices, then change the number of devices limit.") if devices.count > number_of_devices
-  end
+#  def devices_limit
+#    errors.add(:license, "Number of devices limit exceeded. You must first delete one or more devices, then change the number of devices limit.") if devices.count > number_of_devices
+#  end
   
   #############################
   #     Class Methods         #

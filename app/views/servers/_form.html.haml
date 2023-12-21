@@ -1,0 +1,50 @@
+= form_for @server do |f|
+  - @server.errors.each do |attr, msg|
+    .alert.alert-danger.alert-dismissible
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      = "#{attr} #{msg}" if @server.errors[attr].first == msg
+  .row.mb-4
+    .col-xs-12.col-sm-3
+      %label.form-label{:for => "Name"} Name
+      = f.text_field :Name, class: "form-control", placeholder: 'Name', required: true
+    .col-xs-12.col-sm-3
+      %label.form-label{:for => "AccountID"} Account
+      = f.select :AccountID, options_from_collection_for_select(TranactAccount.where.not(Name: [nil, '']).order(:Name), "ID", "Name", params[:tranact_account_id].blank? ? @server.AccountID : params[:tranact_account_id]), {prompt: 'Choose Tranact Account'}, {class: "form-control", required: true}
+    .col-xs-12.col-sm-3
+      %label.form-label{:for => "MAC"} MAC
+      = f.text_field :MAC, class: "form-control", placeholder: 'MAC', required: true
+    - if @server.new_record?
+      .col-xs-12.col-sm-3
+        %label.form-label{:for => "CreateUser"} Create User
+        = f.text_field :CreateUser, value: current_employee.full_name, class: "form-control", placeholder: 'CreateUser', required: true, readonly: true
+    - else
+      .col-xs-12.col-sm-3
+        %label.form-label{:for => "ModifiedUser"} Modified User
+        = f.text_field :ModifiedUser, value: current_employee.full_name, class: "form-control", placeholder: 'ModifiedUser', required: true, readonly: true
+  .row.mb-4
+    .col-xs-12.col-sm-3
+      %label.form-label{:for => "EZCashKey"} EZCash Key
+      = f.text_field :EZCashKey, class: "form-control", placeholder: 'EZCashKey', required: false
+    .col-xs-12.col-sm-3
+      %label.form-label{:for => "JPEGgerKey"} JPEGger Key
+      = f.text_field :JPEGgerKey, class: "form-control", placeholder: 'JPEGgerKey', required: false
+    .col-xs-12.col-sm-3
+      %label.form-label{:for => "ExpirationDate"} Expiration Date
+      = f.text_field :ExpirationDate, class: "form-control flatpickr", placeholder: 'ExpirationDate', required: false
+  .row.mb-4
+    .col-sm-2
+      %label.form-label{:for => "Active"} Active
+      = f.check_box :Active
+    .col-sm-2
+      %label.form-label{:for => "UseForJpegger"} Use For Jpegger
+      = f.check_box :UseForJpegger
+    .col-sm-2
+      %label.form-label{:for => "NewJpegger"} New Jpegger
+      = f.check_box :NewJpegger
+  .row.mb-4
+    %hr
+    .col-6
+      = link_to 'Cancel', :back, class: "btn btn-outline-secondary"
+      %button.btn.btn-primary{:type => "submit", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Save"}} 
+        Save
+  .row.mb-4

@@ -18,12 +18,20 @@
             %tr
               %th Name
               %th Account#
+              %th JPEGgerQty
+              %th JPEGgerExpDate
+              %th EZCashDevices
+              %th EZCashExpDate
               %th
           %tbody
             - @tranact_accounts.each do |tranact_account|
               %tr
-                %td.highlightable= tranact_account.Account
                 %td.highlightable= tranact_account.Name
+                %td.highlightable= tranact_account.Account
+                %td= tranact_account.JPEGgerQty
+                %td= tranact_account.JPEGgerExpDate.strftime("%m/%d/%Y") unless tranact_account.JPEGgerExpDate.blank?
+                %td= tranact_account.EZCashDevices
+                %td= tranact_account.EZCashExpDate.strftime("%m/%d/%Y") unless tranact_account.EZCashExpDate.blank?
                 %td
                   = link_to 'Show', tranact_account, class: 'btn btn-sm btn-outline-secondary'
                   = link_to 'Edit', edit_tranact_account_path(tranact_account), class: 'btn btn-sm btn-primary'

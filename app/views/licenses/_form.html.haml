@@ -39,61 +39,61 @@
     .col-sm-2
       %label.form-label{:for => "IsSingleUser"} Single User
       = f.check_box :IsSingleUser
-  .row.mb-4
-    .col-sm-6
-      #ezcash.accordion
-        .accordion-item
-          %h2#headingOne.accordion-header
-            %button.accordion-button.collapsed{"aria-controls" => "collapseOne", "aria-expanded" => "false", "data-bs-target" => "#collapse_ezcash", "data-bs-toggle" => "collapse", :type => "button"}
-              EZcash
-          #collapse_ezcash.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#ezcash"}
-            .accordion-body
-              .row.mb-4
-                .col-sm-4
-                  %label.form-label{:for => "number_of_devices"} Devices
-                  = f.number_field :number_of_devices, class: "form-control", placeholder: 'Number of Devices', required: false, :min => "0", :pattern => "[0-9]*"
-              .row.mb-4
-                .col-sm-6
-                  %label.form-label{:for => "ezcash_mac_address"} Mac Address
-                  = f.text_field :ezcash_mac_address, class: "form-control", placeholder: 'Mac Address'
-              .row.mb-4
-                .col-sm-6
-                  %label.form-label{:for => "key"} Key
-              -#
-              %hr
-              .col-sm-12
-                = f.fields_for :devices do |device_form|
-                  = render "device_fields", f: device_form
-                = link_to_add_fields "Add Devices", f, :devices
-
-    .col-sm-6
-      #jpegger.accordion
-        .accordion-item
-          %h2#headingOne.accordion-header
-            %button.accordion-button.collapsed{"aria-controls" => "collapseOne", "aria-expanded" => "false", "data-bs-target" => "#collapse_jpegger", "data-bs-toggle" => "collapse", :type => "button"}
-              JPEGger
-          #collapse_jpegger.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#jpegger"}
-            .accordion-body
-              .row.mb-4
-                .col-sm-4
-                  %label.form-label{:for => "number_of_subnets"} Subnets
-                  = f.number_field :number_of_subnets, class: "form-control", placeholder: 'Number of Subnets', required: false, :min => "0", :pattern => "[0-9]*"
-                .col-sm-4
-                  %label.form-label{:for => "number_of_cameras"} Cameras
-                  = f.number_field :number_of_cameras, class: "form-control", placeholder: 'Number of Cameras', required: false, :min => "0", :pattern => "[0-9]*"
-              .row.mb-4
-                .col-sm-6
-                  %label.form-label{:for => "jpegger_mac_address"} Mac Address
-                  = f.text_field :jpegger_mac_address, class: "form-control", placeholder: 'Mac Address'
-              .row.mb-4
-                .col-sm-6
-                  %label.form-label{:for => "key"} Key
-              -#
-              %hr
-              .col-sm-12
-                = f.fields_for :cameras do |camera_form|
-                  = render "camera_fields", f: camera_form
-                = link_to_add_fields "Add Cameras", f, :cameras
+  -#
+    .row.mb-4
+      .col-sm-6
+        #ezcash.accordion
+          .accordion-item
+            %h2#headingOne.accordion-header
+              %button.accordion-button.collapsed{"aria-controls" => "collapseOne", "aria-expanded" => "false", "data-bs-target" => "#collapse_ezcash", "data-bs-toggle" => "collapse", :type => "button"}
+                EZcash
+            #collapse_ezcash.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#ezcash"}
+              .accordion-body
+                .row.mb-4
+                  .col-sm-4
+                    %label.form-label{:for => "number_of_devices"} Devices
+                    = f.number_field :number_of_devices, class: "form-control", placeholder: 'Number of Devices', required: false, :min => "0", :pattern => "[0-9]*"
+                .row.mb-4
+                  .col-sm-6
+                    %label.form-label{:for => "ezcash_mac_address"} Mac Address
+                    = f.text_field :ezcash_mac_address, class: "form-control", placeholder: 'Mac Address'
+                .row.mb-4
+                  .col-sm-6
+                    %label.form-label{:for => "key"} Key
+                -#
+                %hr
+                .col-sm-12
+                  = f.fields_for :devices do |device_form|
+                    = render "device_fields", f: device_form
+                  = link_to_add_fields "Add Devices", f, :devices
+      .col-sm-6
+        #jpegger.accordion
+          .accordion-item
+            %h2#headingOne.accordion-header
+              %button.accordion-button.collapsed{"aria-controls" => "collapseOne", "aria-expanded" => "false", "data-bs-target" => "#collapse_jpegger", "data-bs-toggle" => "collapse", :type => "button"}
+                JPEGger
+            #collapse_jpegger.accordion-collapse.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#jpegger"}
+              .accordion-body
+                .row.mb-4
+                  .col-sm-4
+                    %label.form-label{:for => "number_of_subnets"} Subnets
+                    = f.number_field :number_of_subnets, class: "form-control", placeholder: 'Number of Subnets', required: false, :min => "0", :pattern => "[0-9]*"
+                  .col-sm-4
+                    %label.form-label{:for => "number_of_cameras"} Cameras
+                    = f.number_field :number_of_cameras, class: "form-control", placeholder: 'Number of Cameras', required: false, :min => "0", :pattern => "[0-9]*"
+                .row.mb-4
+                  .col-sm-6
+                    %label.form-label{:for => "jpegger_mac_address"} Mac Address
+                    = f.text_field :jpegger_mac_address, class: "form-control", placeholder: 'Mac Address'
+                .row.mb-4
+                  .col-sm-6
+                    %label.form-label{:for => "key"} Key
+                -#
+                %hr
+                .col-sm-12
+                  = f.fields_for :cameras do |camera_form|
+                    = render "camera_fields", f: camera_form
+                  = link_to_add_fields "Add Cameras", f, :cameras
   .row.mb-4
     %hr
     .col-6

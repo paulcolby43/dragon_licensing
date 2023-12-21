@@ -1,0 +1,47 @@
+-@title= @server.Name
+= render partial: 'shared/navbars/header_navbar'
+.container-fluid
+  .row
+    = render partial: 'shared/navbars/side_bar_menu'
+    %main.col-md-9.ms-sm-auto.col-lg-10.px-md-4
+      .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        %h1.h2= @server.Name
+        .float-end= link_to 'Edit', edit_server_path(@server), class: 'btn btn-primary'
+      .card.col-sm-12
+        .row
+          .col-sm-3
+            .card-body
+              %h5.card-title Account
+              %p.card-text
+                - unless @tranact_account.blank?
+                  = link_to @tranact_account.Name.truncate(30), @tranact_account
+                - else
+                  None
+              %h5.card-title MAC
+              %p.card-text= @server.MAC
+              %h5.card-title Active
+              %p.card-text= @server.Active? ? 'Yes' : 'No'
+          .col-sm-3
+            .card-body
+              %h5.card-title EZCashKey
+              %p.card-text= @server.EZCashKey.blank? ? 'None' : @server.EZCashKey
+              %h5.card-title JPEGgerKey
+              %p.card-text= @server.JPEGgerKey.blank? ? 'None' : @server.JPEGgerKey
+              %h5.card-title ExpirationDate
+              %p.card-text= @server.ExpirationDate.blank? ? 'None' : @server.ExpirationDate
+          .col-sm-3
+            .card-body
+              %h5.card-title CreateDate
+              %p.card-text= @server.CreateDate.blank? ? 'None' : @server.CreateDate
+              %h5.card-title CreateUser
+              %p.card-text= @server.CreateUser.blank? ? 'None' : @server.CreateUser
+              %h5.card-title ModifiedDate
+              %p.card-text= @server.ModifiedDate.blank? ? 'None' : @server.ModifiedDate
+              %h5.card-title ModifiedUser
+              %p.card-text= @server.ModifiedUser.blank? ? 'None' : @server.ModifiedUser
+          .col-sm-3
+            .card-body
+              %h5.card-title UseForJpegger
+              %p.card-text= @server.UseForJpegger? ? 'Yes' : 'No'
+              %h5.card-title NewJpegger
+              %p.card-text= @server.NewJpegger? ? 'Yes' : 'No'

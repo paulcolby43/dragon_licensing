@@ -10,6 +10,14 @@ class TranactAccount < ApplicationRecord
   has_many :servers, foreign_key: 'AccountID'
   has_many :subnets, :foreign_key => 'AccountID'
   
+  before_create :set_create_date
+  before_update :set_modified_date
+  
+  before_validation :set_account_number, on: :create
+  
+  validates :Account, presence: true, uniqueness: true
+  validates :Name, presence: true, uniqueness: true
+  
   #############################
   #     Instance Methods      #
   #############################
@@ -61,6 +69,21 @@ class TranactAccount < ApplicationRecord
         end
       end
     end
+  end
+  
+  private
+
+  def set_create_date
+    self.CreateDate = Time.current if self.CreateDate.nil?
+  end
+  
+  def set_account_number
+    max_account = TranactAccount.maximum(:Account)
+    self.Account = max_account ? max_account.to_i + 1 : 1
+  end
+
+  def set_modified_date
+    self.ModifiedDate = Time.current
   end
   
 end

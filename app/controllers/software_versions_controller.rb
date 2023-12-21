@@ -11,7 +11,7 @@ class SoftwareVersionsController < ApplicationController
   # GET /software_versions/1
   # GET /software_versions/1.json
   def show
-    @licenses = @software_version.licenses
+    @licenses = @software_version.licenses.page(params[:page]).per(50)
   end
 
   # GET /software_versions/new

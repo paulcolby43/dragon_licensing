@@ -3,7 +3,7 @@
   %button.navbar-toggler.position-absolute.d-md-none.collapsed{"aria-controls" => "sidebarMenu", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#sidebarMenu", "data-bs-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
   -# if current_page? accounts_path or tranact_accounts_path
-  - if (params[:controller] == 'accounts' or params[:controller] == 'tranact_accounts') and params[:action] == 'index'
+  - if (params[:controller] == 'accounts' or params[:controller] == 'tranact_accounts' or params[:controller] == 'servers') and params[:action] == 'index'
     -# %input.form-control.form-control-dark.w-100{"aria-label" => "Search", :placeholder => "Search", :type => "text"}/
     = form_tag '#', :method => "get", class: 'w-100' do
       = text_field_tag :q, params[:q], placeholder: 'Search', class: "form-control form-control-dark w-100"
