@@ -17,6 +17,7 @@
               %p.card-text= @tranact_account.Active? ? 'Yes' : 'No'
               %h5.card-title LicenseIntervalMonths
               %p.card-text= @tranact_account.LicenseIntervalMonths
+              %p.card-text= link_to "LIC File", ezlicense_path(@tranact_account.Account), target: '_blank'
           .col-sm-3
             .card-body
               %h5.card-title CreateDate
