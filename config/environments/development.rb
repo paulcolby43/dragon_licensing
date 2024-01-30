@@ -94,4 +94,5 @@ Rails.application.configure do
   
   config.hosts << "azuredevlicensing.eastus2.azurecontainer.io"
   config.hosts << "tranact.com"
+  config.hosts << "azureprodlicensing.eastus2.azurecontainer.io"
 end
