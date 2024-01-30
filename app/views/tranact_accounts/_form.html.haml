@@ -50,9 +50,10 @@
     .col-sm-2
       %label.form-label{:for => "EZCash"} EZCash
       = f.check_box :EZCash
-    .col-sm-2
-      %label.form-label{:for => "EZCashLock"} EZCashLock
-      = f.check_box :EZCashLock
+    -#
+      .col-sm-2
+        %label.form-label{:for => "EZCashLock"} EZCashLock
+        = f.check_box :EZCashLock
   .row.mb-4
     %hr
     .col-6

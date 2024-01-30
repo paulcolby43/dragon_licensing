@@ -46,8 +46,9 @@
               %p.card-text= @tranact_account.EZCashExpDate
               %h5.card-title EZCashDevices
               %p.card-text= @tranact_account.EZCashDevices
-              %h5.card-title EZCashLock
-              %p.card-text= @tranact_account.EZCashLock? ? 'Yes' : 'No'
+              -#
+                %h5.card-title EZCashLock
+                %p.card-text= @tranact_account.EZCashLock? ? 'Yes' : 'No'
               
       
       %br 
