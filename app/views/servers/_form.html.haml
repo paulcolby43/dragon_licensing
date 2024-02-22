@@ -38,9 +38,10 @@
     .col-sm-2
       %label.form-label{:for => "UseForJpegger"} Use For Jpegger
       = f.check_box :UseForJpegger
-    .col-sm-2
-      %label.form-label{:for => "NewJpegger"} New Jpegger
-      = f.check_box :NewJpegger
+    -#
+      .col-sm-2
+        %label.form-label{:for => "NewJpegger"} New Jpegger
+        = f.check_box :NewJpegger
   .row.mb-4
     %hr
     .col-6

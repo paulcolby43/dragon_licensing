@@ -16,21 +16,21 @@ properties:
           memoryInGB: 2
       environmentVariables:
         - name: LICENSING_HOST
-          value: test-scrapdragon.database.windows.net
+          value: trazurelicenses.database.windows.net
         - name: LICENSING_DATABASE
           value: SDLicenseServer
         - name: LICENSING_USERNAME
-          value: sdadmin
+          value: superadmin
         - name: LICENSING_PASSWORD
-          value: 9yj1RB8zZLVU
+          value: "zY8ebjr1eEbsnm83zB2g"
         - name: TRANACT_LICENSING_HOST
-          value: test-scrapdragon.database.windows.net
+          value: trazurelicenses.database.windows.net
         - name: TRANACT_LICENSING_DATABASE
           value: TrLicenses
         - name: TRANACT_LICENSING_USERNAME
-          value: sdadmin
+          value: superadmin
         - name: TRANACT_LICENSING_PASSWORD
-          value: 9yj1RB8zZLVU
+          value: "zY8ebjr1eEbsnm83zB2g"
         - name: APPLICATION_HOST
           value: localhost:3000
         - name: GODADDY_MAIL_USERNAME 
@@ -44,11 +44,20 @@ properties:
       ports:
         - port: 80
         - port: 443
+      #volumeMounts:
+      #- name: sslfileshare
+      #  mountPath: /var/www/app_name/ssl
       resources:
         requests:
           cpu: 0.25
           memoryInGB: 2
-  
+  #volumes:
+  #  - name: sslfileshare
+  #    azureFile:
+  #      sharename: jpegsslfileshare
+  #      storageAccountName: jpegsslstorage
+  #      storageAccountKey: qn2QFGumE7kN0xd+5+AvFZKHC/OLGPj6kh/+FimJ+D7tjV55UymEkyMflFc/9/efIxeEq+L+eySsdlk/EC6fpw== 
+ 
   ipAddress:
     ports:
     - protocol: tcp
