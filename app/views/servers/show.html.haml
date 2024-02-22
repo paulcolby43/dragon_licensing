@@ -45,5 +45,6 @@
             .card-body
               %h5.card-title UseForJpegger
               %p.card-text= @server.UseForJpegger? ? 'Yes' : 'No'
-              %h5.card-title NewJpegger
-              %p.card-text= @server.NewJpegger? ? 'Yes' : 'No'
+              -#
+                %h5.card-title NewJpegger
+                %p.card-text= @server.NewJpegger? ? 'Yes' : 'No'
